@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05080b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JARVIS">
+<link rel="manifest" href="manifest.json">
+<title>JARVIS</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;color:#eaf8ff;background:#04080b}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% 0,#0b2029 0,#04080b 42%);min-height:100vh}
+button,input,textarea,select{font:inherit}
+.app{max-width:760px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 14px calc(90px + env(safe-area-inset-bottom))}
+header{height:62px;display:flex;align-items:center;gap:9px}
+.dot{width:9px;height:9px;border-radius:50%;background:#36ff9b;box-shadow:0 0 15px #36ff9b}
+.brand{font-weight:800;letter-spacing:3px}
+.online{font-size:11px;color:#6dffb0}
+.grow{flex:1}
+.iconbtn{border:1px solid #20353e;background:#0b1419;color:#dff7ff;border-radius:13px;padding:9px 11px}
+.screen{display:none}
+.screen.active{display:block}
+.hero{text-align:center;padding:12px 0 18px}
+.core{width:150px;height:150px;border-radius:50%;margin:8px auto 16px;display:grid;place-items:center;border:1px solid #38d9ff;box-shadow:0 0 18px #0aa0c0,inset 0 0 35px #062e3a;position:relative;background:radial-gradient(circle,#163b48 0,#07141a 45%,#03070a 70%);animation:pulse 3s infinite}
+.core:before,.core:after{content:"";position:absolute;border:1px solid #29b9dd;border-radius:50%}
+.core:before{inset:14px}
+.core:after{inset:31px;border-style:dashed;animation:spin 8s linear infinite}
+.core span{font-weight:800;letter-spacing:2px}
+.state{font-size:12px;color:#7da7b5;letter-spacing:1px}
+.welcome{font-size:16px;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile{border:1px solid #19303a;background:linear-gradient(145deg,#0a141a,#071016);border-radius:18px;padding:15px;text-align:left;color:#eaf8ff}
+.tile b{display:block;margin:6px 0 3px}
+.tile small{color:#76939f}
+.panel{border:1px solid #19303a;background:#071016;border-radius:20px;padding:15px;margin:10px 0}
+.row{display:flex;gap:8px;align-items:center}
+.row>*{min-width:0}
+.stat{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #13262e;color:#91aab4}
+.good{color:#5cffaa}
+.input{width:100%;background:#091218;color:#eaf8ff;border:1px solid #20353e;border-radius:13px;padding:12px;outline:none}
+.btn{background:#0e2028;color:#dff7ff;border:1px solid #24404a;border-radius:13px;padding:11px 13px}
+.btn.primary{background:#38e69a;color:#03110b;border-color:#38e69a;font-weight:700}
+.chat{display:flex;flex-direction:column;gap:9px;max-height:55vh;overflow:auto}
+.msg{max-width:88%;padding:11px 13px;border-radius:16px;white-space:pre-wrap}
+.ai{background:#0b171d;border:1px solid #1a323c;align-self:flex-start}
+.me{background:#103447;align-self:flex-end}
+.composer{display:flex;gap:8px;margin-top:10px}
+.list{display:flex;flex-direction:column;gap:8px}
+.item{padding:12px;border:1px solid #1a313b;background:#091319;border-radius:14px}
+.item.done{opacity:.5;text-decoration:line-through}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(760px,100%);padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(3,8,11,.94);backdrop-filter:blur(18px);display:flex;gap:5px;overflow-x:auto;border-top:1px solid #172b33;z-index:4}
+.nav button{flex:0 0 auto;min-width:68px;background:transparent;border:0;color:#6f8994;padding:7px 5px;border-radius:12px;font-size:11px}
+.nav button.active{background:#10232b;color:#56ffac}
+.nav .emoji{font-size:20px;display:block;margin-bottom:3px}
+.upload{border:1px dashed #28505c;border-radius:15px;padding:20px;text-align:center;color:#8aa7b2}
+.preview{max-width:100%;border-radius:15px;margin-top:10px;display:none}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{background:#0c1b21;border:1px solid #1e3a45;border-radius:999px;padding:7px 10px;font-size:12px}
+.small{font-size:12px;color:#718c97;line-height:1.45}
+@keyframes pulse{50%{transform:scale(1.04);box-shadow:0 0 35px #0aa0c0,inset 0 0 45px #073b49}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+<span class="dot"></span>
+<span class="brand">JARVIS</span>
+<span class="online" id="net">ONLINE</span>
+<span class="grow"></span>
+<button class="iconbtn" onclick="openSystem()">⚙️</button>
+</header>
+
+<section id="home" class="screen active">
+
+<div class="hero">
+<div class="core" id="core">
+<span>JARVIS</span>
+</div>
+
+<div class="state" id="state">SYSTEM READY</div>
+
+<div class="welcome">
+Добрый день, Создатель. Все основные системы готовы.
+</div>
+</div>
+
+<div class="panel">
+
+<div class="stat">
+<span>MEMORY</span>
+<b class="good">ACTIVE</b>
+</div>
+
+<div class="stat">
+<span>VISION</span>
+<b class="good">READY</b>
+</div>
+
+<div class="stat">
+<span>3D SCANNER</span>
+<b class="good">READY</b>
+</div>
+
+<div class="stat">
+<span>TASKS</span>
+<b id="taskStat">0 ACTIVE</b>
+</div>
+
+<div class="stat">
+<span>PROJECTS</span>
+<b id="projectStat">0 ACTIVE</b>
+</div>
+
+</div>
+
+<div class="grid">
+
+<button class="tile" onclick="go('jarvis')">
+🎙️
+<b>JARVIS</b>
+<small>Чат и команды</small>
+</button>
+
+<button class="tile" onclick="go('vision')">
+👁️
+<b>VISION</b>
+<small>Фото и анализ</small>
+</button>
+
+<button class="tile" onclick="go('archive')">
+🧊
+<b>3D ARCHIVE</b>
+<small>Объекты и модели</small>
+</button>
+
+<button class="tile" onclick="go('memory')">
+🧠
+<b>MEMORY</b>
+<small>Память JARVIS</small>
+</button>
+
+<button class="tile" onclick="go('learn')">
+📚
+<b>LEARN</b>
+<small>Учёба и тренировки</small>
+</button>
+
+<button class="tile" onclick="go('tasks')">
+⏰
+<b>TASKS</b>
+<small>План и напоминания</small>
+</button>
+
+<button class="tile" onclick="go('projects')">
+📁
+<b>PROJECTS</b>
+<small>Твои проекты</small>
+</button>
+
+<button class="tile" onclick="go('knowledge')">
+🌐
+<b>KNOWLEDGE</b>
+<small>База знаний</small>
+</button>
+
+<button class="tile" onclick="go('system')">
+⚙️
+<b>SYSTEM</b>
+<small>Настройки</small>
+</button>
+
+</div>
+
+</section>
+
+
+<section id="jarvis" class="screen">
+
+<h2>🎙️ JARVIS</h2>
+
+<div class="panel">
+
+<div id="chat" class="chat">
+
+<div class="msg ai">
+Создатель, я готов. Коротко и по делу.
+</div>
+
+</div>
+
+<div class="composer">
+
+<input
+id="q"
+class="input"
+placeholder="Джарвис, ..."
+>
+
+<button class="btn primary" onclick="ask()">➤</button>
+
+<button class="btn" onclick="speak()">🎙️</button>
+
+</div>
+
+</div>
+
+<div class="chips">
+
+<button class="chip" onclick="quick('статус системы')">
+Статус системы
+</button>
+
+<button class="chip" onclick="quick('что у меня сегодня?')">
+Что сегодня?
+</button>
+
+<button class="chip" onclick="quick('запомни это')">
+Запомни это
+</button>
+
+<button class="chip" onclick="quick('проанализируй')">
+Проанализируй
+</button>
+
+</div>
+
+</section>
+
+
+<section id="vision" class="screen">
+
+<h2>👁️ VISION</h2>
+
+<div class="panel">
+
+<label class="upload">
+
+📷 Сделать или загрузить фото
+
+<input
+id="photo"
+type="file"
+accept="image/*"
+capture="environment"
+hidden
+onchange="showPhoto(this)"
+>
+
+</label>
+
+<img id="preview" class="preview">
+
+<div class="row" style="margin-top:10px">
+
+<button class="btn primary" onclick="demoAnalyze()">
+Анализировать
+</button>
+
+<button class="btn" onclick="clearPhoto()">
+Очистить
+</button>
+
+</div>
+
+<p id="visionText" class="small">
+Загрузи изображение — здесь можно будет подключить реальный анализ зрения.
+</p>
+
+</div>
+
+<div class="panel">
+
+<b>Возможности</b>
+
+<p class="small">
+Объекты • OCR • документы • скриншоты • схемы • графики • школьные задания • поиск ошибок • краткий/подробный анализ.
+</p>
+
+</div>
+
+</section>
+
+
+<section id="archive" class="screen">
+
+<h2>🧊 3D ARCHIVE</h2>
+
+<div class="panel">
+
+<div class="core" style="width:120px;height:120px">
+<span>3D</span>
+</div>
+
+<button
+class="btn primary"
+onclick="toast('Камера для 3D-сканирования будет подключена на следующем этапе.')"
+>
+📷 Сканировать объект
+</button>
+
+<p class="small">
+Хранилище моделей, версии, описание, измерения, анализ конструкции и ASK JARVIS — интерфейс уже подготовлен.
+</p>
+
+</div>
+
+<div id="models" class="list"></div>
+
+</section>
+
+
+<section id="memory" class="screen">
+
+<h2>🧠 MEMORY</h2>
+
+<div class="panel">
+
+<div class="row">
+
+<input
+id="memInput"
+class="input"
+placeholder="Что запомнить?"
+>
+
+<button
+class="btn primary"
+onclick="addMemory()"
+>
++
+</button>
+
+</div>
+
+<p class="small">
+Память хранится локально в браузере. Позже её можно связать с настоящим ИИ.
+</p>
+
+</div>
+
+<div id="memoryList" class="list"></div>
+
+<button class="btn" onclick="clearMemory()">
+Очистить память
+</button>
+
+</section>
+
+
+<section id="learn" class="screen">
+
+<h2>📚 LEARN</h2>
+
+<div class="panel">
+
+<select id="subject" class="input">
+
+<option>Математика</option>
+<option>Физика</option>
+<option>История</option>
+<option>География</option>
+<option>Русский язык</option>
+<option>Информатика</option>
+
+</select>
+
+<input
+id="topic"
+class="input"
+style="margin-top:8px"
+placeholder="Тема"
+>
+
+<div class="row" style="margin-top:8px">
+
+<button class="btn primary" onclick="learn('explain')">
+Объяснить
+</button>
+
+<button class="btn" onclick="learn('test')">
+Проверь меня
+</button>
+
+<button class="btn" onclick="learn('summary')">
+Конспект
+</button>
+
+</div>
+
+</div>
+
+<div id="learnOut" class="panel">
+Выбери предмет и тему.
+</div>
+
+</section>
+
+
+<section id="tasks" class="screen">
+
+<h2>⏰ TASKS</h2>
+
+<div class="panel">
+
+<div class="row">
+
+<input
+id="taskInput"
+class="input"
+placeholder="Новая задача"
+>
+
+<button
+class="btn primary"
+onclick="addTask()"
+>
++
+</button>
+
+</div>
+
+</div>
+
+<div id="taskList" class="list"></div>
+
+</section>
+
+
+<section id="projects" class="screen">
+
+<h2>📁 PROJECTS</h2>
+
+<div class="panel">
+
+<input
+id="projectInput"
+class="input"
+placeholder="Название проекта"
+>
+
+<button
+class="btn primary"
+style="margin-top:8px"
+onclick="addProject()"
+>
+Создать проект
+</button>
+
+</div>
+
+<div id="projectList" class="list"></div>
+
+</section>
+
+
+<section id="knowledge" class="screen">
+
+<h2>🌐 KNOWLEDGE</h2>
+
+<div class="panel">
+
+<label class="upload">
+
+📄 Добавить материал
+
+<input
+id="docs"
+type="file"
+multiple
+accept=".pdf,.txt,.md,.doc,.docx,image/*"
+hidden
+onchange="addDocs(this)"
+>
+
+</label>
+
+<div
+id="docList"
+class="list"
+style="margin-top:10px"
+></div>
+
+</div>
+
+<div class="panel">
+
+<b>База знаний</b>
+
+<p class="small">
+PDF • TXT • документы • изображения • учебные материалы.
+Реальный поиск по содержимому и интернет-поиск подключаются через backend.
+</p>
+
+</div>
+
+</section>
+
+
+<section id="system" class="screen">
+
+<h2>⚙️ SYSTEM</h2>
+
+<div class="panel">
+
+<label class="small">
+Имя пользователя
+</label>
+
+<input
+id="userName"
+class="input"
+value="Создатель"
+onchange="saveSettings()"
+>
+
+<div class="stat">
+<span>Соединение</span>
+<b id="net2" class="good">ONLINE</b>
+</div>
+
+<div class="stat">
+<span>Память</span>
+<b>LOCAL</b>
+</div>
+
+<div class="stat">
+<span>PWA</span>
+<b>READY</b>
+</div>
+
+<div style="margin-top:12px">
+
+<label class="small">
+Длина ответа
+</label>
+
+<select
+id="length"
+class="input"
+onchange="saveSettings()"
+>
+
+<option>Коротко</option>
+<option>Средне</option>
+<option>Подробно</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button class="btn" onclick="clearAll()">
+Очистить локальные данные
+</button>
+
+<p class="small">
+Версия интерфейса: 1.0 • Online/Offline определяется автоматически.
+</p>
+
+</section>
+
+</div>
+
+
+<nav class="nav">
+
+<button onclick="go('home')" class="active">
+🏠
+<span class="emoji"></span>
+Главная
+</button>
+
+<button onclick="go('jarvis')">
+🎙️
+<span class="emoji"></span>
+JARVIS
+</button>
+
+<button onclick="go('vision')">
+👁️
+<span class="emoji"></span>
+VISION
+</button>
+
+<button onclick="go('archive')">
+🧊
+<span class="emoji"></span>
+3D
+</button>
+
+<button onclick="go('memory')">
+🧠
+<span class="emoji"></span>
+Memory
+</button>
+
+<button onclick="go('learn')">
+📚
+<span class="emoji"></span>
+Learn
+</button>
+
+<button onclick="go('tasks')">
+⏰
+<span class="emoji"></span>
+Tasks
+</button>
+
+<button onclick="go('projects')">
+📁
+<span class="emoji"></span>
+Projects
+</button>
+
+<button onclick="go('knowledge')">
+🌐
+<span class="emoji"></span>
+Knowledge
+</button>
+
+</nav>
+
+
+<script>
+
+const $=id=>document.getElementById(id);
+
+const get=(k,d=[])=>JSON.parse(
+localStorage.getItem(k)||JSON.stringify(d)
+);
+
+const set=(k,v)=>
+localStorage.setItem(k,JSON.stringify(v));
+
+
+function go(id){
+
+document
+.querySelectorAll('.screen')
+.forEach(x=>x.classList.remove('active'));
+
+$(id).classList.add('active');
+
+document
+.querySelectorAll('.nav button')
+.forEach(x=>x.classList.remove('active'));
+
+window.scrollTo(0,0);
+
+render();
+
+}
+
+
+function openSystem(){
+go('system');
+}
+
+
+function render(){
+
+renderTasks();
+renderProjects();
+renderMemory();
+renderDocs();
+updateStats();
+
+}
+
+
+function updateStats(){
+
+$('taskStat').textContent=
+get('tasks').filter(x=>!x.done).length+' ACTIVE';
+
+$('projectStat').textContent=
+get('projects').length+' ACTIVE';
+
+}
+
+
+function addTask(){
+
+let v=$('taskInput').value.trim();
+
+if(!v)return;
+
+let a=get('tasks');
+
+a.push({
+text:v,
+done:false
+});
+
+set('tasks',a);
+
+$('taskInput').value='';
+
+render();
+
+}
+
+
+function renderTasks(){
+
+$('taskList').innerHTML=
+get('tasks')
+.map((x,i)=>`
+
+<div
+class="item ${x.done?'done':''}"
+onclick="toggleTask(${i})"
+>
+⏰ ${esc(x.text)}
+<span style="float:right">✓</span>
+</div>
+
+`)
+.join('')
+
+||
+
+'<p class="small">Задач пока нет.</p>';
+
+}
+
+
+function toggleTask(i){
+
+let a=get('tasks');
+
+a[i].done=!a[i].done;
+
+set('tasks',a);
+
+render();
+
+}
+
+
+function addProject(){
+
+let v=$('projectInput').value.trim();
+
+if(!v)return;
+
+let a=get('projects');
+
+a.push({
+name:v,
+date:new Date().toLocaleDateString('ru-RU')
+});
+
+set('projects',a);
+
+$('projectInput').value='';
+
+render();
+
+}
+
+
+function renderProjects(){
+
+$('projectList').innerHTML=
+get('projects')
+.map(x=>`
+
+<div class="item">
+
+<b>📁 ${esc(x.name)}</b>
+
+<div class="small">
+Создан: ${x.date} • Память проекта • Файлы • Задачи
+</div>
+
+</div>
+
+`)
+.join('')
+
+||
+
+'<p class="small">Проектов пока нет.</p>';
+
+}
+
+
+function addMemory(){
+
+let v=$('memInput').value.trim();
+
+if(!v)return;
+
+let a=get('memory');
+
+a.push({
+text:v,
+date:new Date().toLocaleString('ru-RU')
+});
+
+set('memory',a);
+
+$('memInput').value='';
+
+render();
+
+}
+
+
+function renderMemory(){
+
+$('memoryList').innerHTML=
+get('memory')
+.map((x,i)=>`
+
+<div class="item">
+
+🧠 ${esc(x.text)}
+
+<div class="small">
+
+${x.date}
+
+<button
+class="btn"
+onclick="delMemory(${i})"
+>
+Удалить
+</button>
+
+</div>
+
+</div>
+
+`)
+.join('')
+
+||
+
+'<p class="small">Память пуста.</p>';
+
+}
+
+
+function delMemory(i){
+
+let a=get('memory');
+
+a.splice(i,1);
+
+set('memory',a);
+
+render();
+
+}
+
+
+function clearMemory(){
+
+localStorage.removeItem('memory');
+
+render();
+
+}
+
+
+function addDocs(el){
+
+let a=get('docs');
+
+[...el.files].forEach(f=>
+a.push({
+name:f.name,
+size:f.size
+})
+);
+
+set('docs',a);
+
+render();
+
+}
+
+
+function renderDocs(){
+
+$('docList').innerHTML=
+get('docs')
+.map(x=>`
+
+<div class="item">
+
+📄 ${esc(x.name)}
+
+<div class="small">
+${Math.round(x.size/1024)} KB
+</div>
+
+</div>
+
+`)
+.join('');
+
+}
+
+
+function showPhoto(el){
+
+let f=el.files[0];
+
+if(!f)return;
+
+let r=new FileReader();
+
+r.onload=e=>{
+
+$('preview').src=e.target.result;
+
+$('preview').style.display='block';
+
+$('visionText').textContent=
+'Изображение загружено. Нажми «Анализировать».';
+
+};
+
+r.readAsDataURL(f);
+
+}
+
+
+function clearPhoto(){
+
+$('preview').style.display='none';
+
+$('preview').src='';
+
+$('visionText').textContent=
+'Загрузи изображение — здесь можно будет подключить реальный анализ зрения.';
+
+}
+
+
+function demoAnalyze(){
+
+if(!$('preview').src)
+return toast('Сначала загрузи фото.');
+
+$('state').textContent='ANALYZING';
+
+setTimeout(()=>{
+
+go('vision');
+
+$('visionText').textContent=
+'Интерфейс анализа готов. Для настоящего распознавания объектов, текста и схем подключим модель Vision через безопасный backend.';
+
+$('state').textContent='SYSTEM READY';
+
+},700);
+
+}
+
+
+function ask(){
+
+let q=$('q').value.trim();
+
+if(!q)return;
+
+addMsg(q,'me');
+
+$('q').value='';
+
+$('state').textContent='THINKING';
+
+setTimeout(()=>{
+
+let t=q.toLowerCase();
+
+let ans;
+
+if(t.includes('статус')){
+
+ans=
+'Все основные системы готовы. MEMORY — ACTIVE, VISION — READY, 3D SCANNER — READY.';
+
+}
+
+else if(t.includes('сегодня')){
+
+ans=
+'Сейчас в задачах '+get('tasks').filter(x=>!x.done).length+' активных задач.';
+
+}
+
+else if(t.includes('запомни')){
+
+ans=
+'Скажи, что именно запомнить, и я добавлю это в локальную память.';
+
+}
+
+else{
+
+ans=
+'Принято, Создатель. Сейчас это демонстрационный режим. После подключения backend я смогу отвечать через настоящий ИИ и использовать твою базу знаний.';
+
+}
+
+addMsg(ans,'ai');
+
+$('state').textContent='ANSWERING';
+
+},500);
+
+}
+
+
+function quick(t){
+
+$('q').value=t;
+
+ask();
+
+}
+
+
+function addMsg(t,c){
+
+let d=document.createElement('div');
+
+d.className='msg '+c;
+
+d.textContent=t;
+
+$('chat').appendChild(d);
+
+$('chat').scrollTop=$('chat').scrollHeight;
+
+}
+
+
+function speak(){
+
+if(
+!('SpeechRecognition'in window||
+'webkitSpeechRecognition'in window)
+)
+return toast(
+'Голосовой ввод не поддерживается этим браузером.'
+);
+
+let R=
+window.SpeechRecognition||
+window.webkitSpeechRecognition;
+
+let r=new R();
+
+r.lang='ru-RU';
+
+r.onstart=()=>{
+$('state').textContent='LISTENING';
+};
+
+r.onresult=e=>{
+
+$('q').value=
+e.results[0][0].transcript;
+
+ask();
+
+};
+
+r.onend=()=>{
+$('state').textContent='SYSTEM READY';
+};
+
+r.start();
+
+}
+
+
+function learn(mode){
+
+let s=$('subject').value;
+
+let t=$('topic').value.trim()||'выбранную тему';
+
+let out;
+
+if(mode==='explain'){
+
+out=
+`Объяснение: ${s} — ${t}. На следующем этапе JARVIS разберёт тему простыми словами, примерами и шагами.`;
+
+}
+
+else if(mode==='test'){
+
+out=
+`Режим «Проверь меня»: ${s} — ${t}. Здесь появятся вопросы, таймер и проверка ответов.`;
+
+}
+
+else{
+
+out=
+`Конспект: ${s} — ${t}. Здесь будет создан краткий структурированный конспект.`;
+
+}
+
+$('learnOut').textContent=out;
+
+}
+
+
+function saveSettings(){
+
+localStorage.setItem(
+'userName',
+$('userName').value
+);
+
+localStorage.setItem(
+'length',
+$('length').value
+);
+
+}
+
+
+function clearAll(){
+
+if(confirm(
+'Удалить локальные данные JARVIS?'
+)){
+
+localStorage.clear();
+
+location.reload();
+
+}
+
+}
+
+
+function esc(s){
+
+return String(s).replace(
+/[&<>"']/g,
+m=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[m])
+);
+
+}
+
+
+function net(){
+
+let online=navigator.onLine;
+
+$('net').textContent=
+online?'ONLINE':'OFFLINE';
+
+$('net2').textContent=
+online?'ONLINE':'OFFLINE';
+
+$('net2').className=
+online?'good':'';
+
+if(!online)
+$('state').textContent='OFFLINE MODE';
+
+}
+
+
+function toast(t){
+alert(t);
+}
+
+
+window.addEventListener('online',net);
+
+window.addEventListener('offline',net);
+
+net();
+
+render();
+
+if('serviceWorker'in navigator)
+navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+</script>
+
+</body>
+</html>
