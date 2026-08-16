@@ -1,0 +1,9 @@
+{
+  "name": "JARVIS",
+  "short_name": "JARVIS",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#04080b",
+  "theme_color": "#05080b",
+  "description": "Персональный AI-ассистент JARVIS"
+}
