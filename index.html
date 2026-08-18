@@ -14,13 +14,13 @@
 :root{
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
   color:#eaf8ff;
-  background:#04080b
+  background:#04080b;
 }
 *{box-sizing:border-box}
 body{
   margin:0;
-  background:radial-gradient(circle at 50% 0,#0b2029 0,#04080b 42%);
-  min-height:100vh
+  min-height:100vh;
+  background:radial-gradient(circle at 50% 0,#0b2029 0,#04080b 45%);
 }
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
@@ -28,36 +28,42 @@ button{cursor:pointer}
   max-width:760px;
   margin:auto;
   min-height:100vh;
-  padding:env(safe-area-inset-top) 14px calc(90px + env(safe-area-inset-bottom))
+  padding:env(safe-area-inset-top) 14px calc(90px + env(safe-area-inset-bottom));
 }
 header{
   height:62px;
   display:flex;
   align-items:center;
-  gap:9px
+  gap:9px;
 }
 .dot{
   width:9px;
   height:9px;
   border-radius:50%;
   background:#36ff9b;
-  box-shadow:0 0 15px #36ff9b
+  box-shadow:0 0 15px #36ff9b;
 }
 .brand{
   font-weight:800;
-  letter-spacing:3px
+  letter-spacing:3px;
 }
 .online{
   font-size:11px;
-  color:#6dffb0
+  color:#6dffb0;
 }
 .grow{flex:1}
-.iconbtn{
+.iconbtn,.btn{
   border:1px solid #20353e;
   background:#0b1419;
   color:#dff7ff;
   border-radius:13px;
-  padding:9px 11px
+  padding:10px 13px;
+}
+.btn.primary{
+  background:#38e69a;
+  color:#03110b;
+  border-color:#38e69a;
+  font-weight:700;
 }
 .screen{display:none}
 .screen.active{display:block}
@@ -73,37 +79,37 @@ header{
   box-shadow:0 0 18px #0aa0c0,inset 0 0 35px #062e3a;
   position:relative;
   background:radial-gradient(circle,#163b48 0,#07141a 45%,#03070a 70%);
-  animation:pulse 3s infinite
+  animation:pulse 3s infinite;
 }
 .core:before,.core:after{
   content:"";
   position:absolute;
   border:1px solid #29b9dd;
-  border-radius:50%
+  border-radius:50%;
 }
 .core:before{inset:14px}
 .core:after{
   inset:31px;
   border-style:dashed;
-  animation:spin 8s linear infinite
+  animation:spin 8s linear infinite;
 }
 .core span{
   font-weight:800;
-  letter-spacing:2px
+  letter-spacing:2px;
 }
 .state{
   font-size:12px;
   color:#7da7b5;
-  letter-spacing:1px
+  letter-spacing:1px;
 }
 .welcome{
   font-size:16px;
-  margin-top:8px
+  margin-top:8px;
 }
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:10px
+  gap:10px;
 }
 .tile{
   border:1px solid #19303a;
@@ -111,24 +117,21 @@ header{
   border-radius:18px;
   padding:15px;
   text-align:left;
-  color:#eaf8ff
+  color:#eaf8ff;
 }
-.tile b{
-  display:block;
-  margin:6px 0 3px
-}
+.tile b{display:block;margin:6px 0 3px}
 .tile small{color:#76939f}
 .panel{
   border:1px solid #19303a;
   background:#071016;
   border-radius:20px;
   padding:15px;
-  margin:10px 0
+  margin:10px 0;
 }
 .row{
   display:flex;
   gap:8px;
-  align-items:center
+  align-items:center;
 }
 .row>*{min-width:0}
 .stat{
@@ -136,7 +139,7 @@ header{
   justify-content:space-between;
   padding:9px 0;
   border-bottom:1px solid #13262e;
-  color:#91aab4
+  color:#91aab4;
 }
 .good{color:#5cffaa}
 .input{
@@ -146,68 +149,55 @@ header{
   border:1px solid #20353e;
   border-radius:13px;
   padding:12px;
-  outline:none
+  outline:none;
 }
 .input:focus{
   border-color:#38d9ff;
-  box-shadow:0 0 12px #083c4a
-}
-.btn{
-  background:#0e2028;
-  color:#dff7ff;
-  border:1px solid #24404a;
-  border-radius:13px;
-  padding:11px 13px
-}
-.btn.primary{
-  background:#38e69a;
-  color:#03110b;
-  border-color:#38e69a;
-  font-weight:700
+  box-shadow:0 0 12px #083c4a;
 }
 .chat{
   display:flex;
   flex-direction:column;
   gap:9px;
   max-height:55vh;
-  overflow:auto
+  overflow:auto;
 }
 .msg{
   max-width:88%;
   padding:11px 13px;
   border-radius:16px;
   white-space:pre-wrap;
-  word-break:break-word
+  word-break:break-word;
 }
 .ai{
   background:#0b171d;
   border:1px solid #1a323c;
-  align-self:flex-start
+  align-self:flex-start;
 }
 .me{
   background:#103447;
-  align-self:flex-end
+  align-self:flex-end;
 }
 .composer{
   display:flex;
   gap:8px;
-  margin-top:10px
+  margin-top:10px;
 }
 .composer .input{flex:1}
 .list{
   display:flex;
   flex-direction:column;
-  gap:8px
+  gap:8px;
 }
 .item{
   padding:12px;
   border:1px solid #1a313b;
   background:#091319;
-  border-radius:14px
+  border-radius:14px;
 }
 .item.done{
   opacity:.5;
-  text-decoration:line-through
+  text-decoration:line-through;
 }
 .nav{
   position:fixed;
@@ -222,7 +212,7 @@ header{
   gap:5px;
   overflow-x:auto;
   border-top:1px solid #172b33;
-  z-index:4
+  z-index:4;
 }
 .nav button{
   flex:0 0 auto;
@@ -232,16 +222,11 @@ header{
   color:#6f8994;
   padding:7px 5px;
   border-radius:12px;
-  font-size:11px
+  font-size:11px;
 }
 .nav button.active{
   background:#10232b;
-  color:#56ffac
-}
-.nav .emoji{
-  font-size:20px;
-  display:block;
-  margin-bottom:3px
+  color:#56ffac;
 }
 .upload{
   display:block;
@@ -250,18 +235,18 @@ header{
   padding:20px;
   text-align:center;
   color:#8aa7b2;
-  cursor:pointer
+  cursor:pointer;
 }
 .preview{
   max-width:100%;
   border-radius:15px;
   margin-top:10px;
-  display:none
+  display:none;
 }
 .chips{
   display:flex;
   gap:7px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 .chip{
   background:#0c1b21;
@@ -269,21 +254,24 @@ header{
   border-radius:999px;
   padding:7px 10px;
   font-size:12px;
-  color:#dff7ff
+  color:#dff7ff;
 }
 .small{
   font-size:12px;
   color:#718c97;
-  line-height:1.45
+  line-height:1.45;
 }
 .loading{
   opacity:.7;
-  animation:blink 1s infinite
+  animation:blink 1s infinite;
+}
+.error{
+  color:#ff8d8d;
 }
 @keyframes pulse{
   50%{
     transform:scale(1.04);
-    box-shadow:0 0 35px #0aa0c0,inset 0 0 45px #073b49
+    box-shadow:0 0 35px #0aa0c0,inset 0 0 45px #073b49;
   }
 }
 @keyframes spin{
@@ -307,26 +295,31 @@ header{
 <span class="brand">JARVIS</span>
 <span class="online" id="net">ONLINE</span>
 <span class="grow"></span>
-<button class="iconbtn" onclick="openSystem()">⚙️</button>
+<button class="iconbtn" onclick="go('system')">⚙️</button>
 </header>
 
 <section id="home" class="screen active">
 
 <div class="hero">
 
-<div class="core" id="core">
+<div class="core">
 <span>JARVIS</span>
 </div>
 
 <div class="state" id="state">SYSTEM READY</div>
 
 <div class="welcome">
-Добрый день, Создатель. Все основные системы готовы.
+Добрый день, Создатель. Я готов.
 </div>
 
 </div>
 
 <div class="panel">
+
+<div class="stat">
+<span>AI</span>
+<b id="aiStatus" class="good">READY</b>
+</div>
 
 <div class="stat">
 <span>MEMORY</span>
@@ -335,11 +328,6 @@ header{
 
 <div class="stat">
 <span>VISION</span>
-<b class="good">READY</b>
-</div>
-
-<div class="stat">
-<span>3D SCANNER</span>
 <b class="good">READY</b>
 </div>
 
@@ -357,62 +345,17 @@ header{
 
 <div class="grid">
 
-<button class="tile" onclick="go('jarvis')">
-🎙️
-<b>JARVIS</b>
-<small>Чат и команды</small>
-</button>
-
-<button class="tile" onclick="go('vision')">
-👁️
-<b>VISION</b>
-<small>Фото и анализ</small>
-</button>
-
-<button class="tile" onclick="go('archive')">
-🧊
-<b>3D ARCHIVE</b>
-<small>Объекты и модели</small>
-</button>
-
-<button class="tile" onclick="go('memory')">
-🧠
-<b>MEMORY</b>
-<small>Память JARVIS</small>
-</button>
-
-<button class="tile" onclick="go('learn')">
-📚
-<b>LEARN</b>
-<small>Учёба и тренировки</small>
-</button>
-
-<button class="tile" onclick="go('tasks')">
-⏰
-<b>TASKS</b>
-<small>План и напоминания</small>
-</button>
-
-<button class="tile" onclick="go('projects')">
-📁
-<b>PROJECTS</b>
-<small>Твои проекты</small>
-</button>
-
-<button class="tile" onclick="go('knowledge')">
-🌐
-<b>KNOWLEDGE</b>
-<small>База знаний</small>
-</button>
-
-<button class="tile" onclick="go('system')">
-⚙️
-<b>SYSTEM</b>
-<small>Настройки</small>
-</button>
+<button class="tile" onclick="go('jarvis')">🎙️<b>JARVIS</b><small>Чат и команды</small></button>
+<button class="tile" onclick="go('vision')">👁️<b>VISION</b><small>Фото и анализ</small></button>
+<button class="tile" onclick="go('archive')">🧊<b>3D ARCHIVE</b><small>Объекты</small></button>
+<button class="tile" onclick="go('memory')">🧠<b>MEMORY</b><small>Память</small></button>
+<button class="tile" onclick="go('learn')">📚<b>LEARN</b><small>Учёба</small></button>
+<button class="tile" onclick="go('tasks')">⏰<b>TASKS</b><small>Задачи</small></button>
+<button class="tile" onclick="go('projects')">📁<b>PROJECTS</b><small>Проекты</small></button>
+<button class="tile" onclick="go('knowledge')">🌐<b>KNOWLEDGE</b><small>Знания</small></button>
+<button class="tile" onclick="go('system')">⚙️<b>SYSTEM</b><small>Настройки</small></button>
 
 </div>
-
 </section>
 
 <section id="jarvis" class="screen">
@@ -431,12 +374,7 @@ header{
 
 <div class="composer">
 
-<input
-id="q"
-class="input"
-placeholder="Джарвис, ..."
-autocomplete="off"
->
+<input id="q" class="input" placeholder="Джарвис, ..." autocomplete="off">
 
 <button class="btn primary" onclick="ask()">➤</button>
 
@@ -448,21 +386,9 @@ autocomplete="off"
 
 <div class="chips">
 
-<button class="chip" onclick="quick('статус системы')">
-Статус системы
-</button>
-
-<button class="chip" onclick="quick('что у меня сегодня?')">
-Что сегодня?
-</button>
-
-<button class="chip" onclick="quick('что ты умеешь?')">
-Что ты умеешь?
-</button>
-
-<button class="chip" onclick="quick('запомни это')">
-Запомни это
-</button>
+<button class="chip" onclick="quick('Статус системы')">Статус системы</button>
+<button class="chip" onclick="quick('Что ты умеешь?')">Что ты умеешь?</button>
+<button class="chip" onclick="quick('Запомни, что я люблю JARVIS')">Запомни это</button>
 
 </div>
 
@@ -475,31 +401,16 @@ autocomplete="off"
 <div class="panel">
 
 <label class="upload">
-
 📷 Сделать или загрузить фото
-
-<input
-id="photo"
-type="file"
-accept="image/*"
-capture="environment"
-hidden
-onchange="showPhoto(this)"
->
-
+<input id="photo" type="file" accept="image/*" capture="environment" hidden onchange="showPhoto(this)">
 </label>
 
 <img id="preview" class="preview">
 
 <div class="row" style="margin-top:10px">
 
-<button class="btn primary" onclick="analyzePhoto()">
-Анализировать
-</button>
-
-<button class="btn" onclick="clearPhoto()">
-Очистить
-</button>
+<button class="btn primary" onclick="analyzePhoto()">Анализировать</button>
+<button class="btn" onclick="clearPhoto()">Очистить</button>
 
 </div>
 
@@ -521,20 +432,13 @@ onchange="showPhoto(this)"
 <span>3D</span>
 </div>
 
-<button
-class="btn primary"
-onclick="toast('3D-сканирование подключим отдельным модулем.')"
->
+<button class="btn primary" onclick="toast('3D-сканер подготовлен для отдельного модуля.')">
 📷 Сканировать объект
 </button>
 
-<p class="small">
-Архив моделей и данные объектов.
-</p>
+<p class="small">Архив объектов и моделей.</p>
 
 </div>
-
-<div id="models" class="list"></div>
 
 </section>
 
@@ -546,32 +450,19 @@ onclick="toast('3D-сканирование подключим отдельны�
 
 <div class="row">
 
-<input
-id="memInput"
-class="input"
-placeholder="Что запомнить?"
->
+<input id="memInput" class="input" placeholder="Что запомнить?">
 
-<button
-class="btn primary"
-onclick="addMemory()"
->
-+
-</button>
+<button class="btn primary" onclick="addMemory()">+</button>
 
 </div>
 
-<p class="small">
-Локальная память JARVIS.
-</p>
+<p class="small">Память хранится локально на устройстве.</p>
 
 </div>
 
 <div id="memoryList" class="list"></div>
 
-<button class="btn" onclick="clearMemory()">
-Очистить память
-</button>
+<button class="btn" onclick="clearMemory()">Очистить память</button>
 
 </section>
 
@@ -582,36 +473,21 @@ onclick="addMemory()"
 <div class="panel">
 
 <select id="subject" class="input">
-
 <option>Математика</option>
 <option>Физика</option>
 <option>История</option>
 <option>География</option>
 <option>Русский язык</option>
 <option>Информатика</option>
-
 </select>
 
-<input
-id="topic"
-class="input"
-style="margin-top:8px"
-placeholder="Тема"
->
+<input id="topic" class="input" style="margin-top:8px" placeholder="Тема">
 
 <div class="row" style="margin-top:8px">
 
-<button class="btn primary" onclick="learn('explain')">
-Объяснить
-</button>
-
-<button class="btn" onclick="learn('test')">
-Проверь меня
-</button>
-
-<button class="btn" onclick="learn('summary')">
-Конспект
-</button>
+<button class="btn primary" onclick="learn('explain')">Объяснить</button>
+<button class="btn" onclick="learn('test')">Тест</button>
+<button class="btn" onclick="learn('summary')">Конспект</button>
 
 </div>
 
@@ -631,18 +507,9 @@ placeholder="Тема"
 
 <div class="row">
 
-<input
-id="taskInput"
-class="input"
-placeholder="Новая задача"
->
+<input id="taskInput" class="input" placeholder="Новая задача">
 
-<button
-class="btn primary"
-onclick="addTask()"
->
-+
-</button>
+<button class="btn primary" onclick="addTask()">+</button>
 
 </div>
 
@@ -658,17 +525,9 @@ onclick="addTask()"
 
 <div class="panel">
 
-<input
-id="projectInput"
-class="input"
-placeholder="Название проекта"
->
+<input id="projectInput" class="input" placeholder="Название проекта">
 
-<button
-class="btn primary"
-style="margin-top:8px"
-onclick="addProject()"
->
+<button class="btn primary" style="margin-top:8px" onclick="addProject()">
 Создать проект
 </button>
 
@@ -685,35 +544,11 @@ onclick="addProject()"
 <div class="panel">
 
 <label class="upload">
-
 📄 Добавить материал
-
-<input
-id="docs"
-type="file"
-multiple
-accept=".txt,.md,image/*"
-hidden
-onchange="addDocs(this)"
->
-
+<input id="docs" type="file" multiple accept=".txt,.md" hidden onchange="addDocs(this)">
 </label>
 
-<div
-id="docList"
-class="list"
-style="margin-top:10px"
-></div>
-
-</div>
-
-<div class="panel">
-
-<b>База знаний</b>
-
-<p class="small">
-Локальные материалы будут храниться в браузере.
-</p>
+<div id="docList" class="list" style="margin-top:10px"></div>
 
 </div>
 
@@ -725,16 +560,9 @@ style="margin-top:10px"
 
 <div class="panel">
 
-<label class="small">
-Имя пользователя
-</label>
+<label class="small">Имя пользователя</label>
 
-<input
-id="userName"
-class="input"
-value="Создатель"
-onchange="saveSettings()"
->
+<input id="userName" class="input" value="Создатель" onchange="saveSettings()">
 
 <div class="stat">
 <span>Соединение</span>
@@ -742,44 +570,27 @@ onchange="saveSettings()"
 </div>
 
 <div class="stat">
-<span>Память</span>
-<b>LOCAL</b>
-</div>
-
-<div class="stat">
-<span>PWA</span>
-<b>READY</b>
+<span>AI Worker</span>
+<b id="workerStatus" class="good">READY</b>
 </div>
 
 <div style="margin-top:12px">
 
-<label class="small">
-Длина ответа
-</label>
+<label class="small">Длина ответа</label>
 
-<select
-id="length"
-class="input"
-onchange="saveSettings()"
->
-
+<select id="length" class="input" onchange="saveSettings()">
 <option>Коротко</option>
 <option>Средне</option>
 <option>Подробно</option>
-
 </select>
 
 </div>
 
 </div>
 
-<button class="btn" onclick="clearAll()">
-Очистить локальные данные
-</button>
+<button class="btn" onclick="clearAll()">Очистить локальные данные</button>
 
-<p class="small">
-JARVIS v2.0 • AI ONLINE
-</p>
+<p class="small">JARVIS v3.0</p>
 
 </section>
 
@@ -787,269 +598,536 @@ JARVIS v2.0 • AI ONLINE
 
 <nav class="nav">
 
-<button onclick="go('home')" class="active">
-🏠
-<span class="emoji"></span>
-Главная
-</button>
-
-<button onclick="go('jarvis')">
-🎙️
-<span class="emoji"></span>
-JARVIS
-</button>
-
-<button onclick="go('vision')">
-👁️
-<span class="emoji"></span>
-VISION
-</button>
-
-<button onclick="go('archive')">
-🧊
-<span class="emoji"></span>
-3D
-</button>
-
-<button onclick="go('memory')">
-🧠
-<span class="emoji"></span>
-Memory
-</button>
-
-<button onclick="go('learn')">
-📚
-<span class="emoji"></span>
-Learn
-</button>
-
-<button onclick="go('tasks')">
-⏰
-<span class="emoji"></span>
-Tasks
-</button>
-
-<button onclick="go('projects')">
-📁
-<span class="emoji"></span>
-Projects
-</button>
-
-<button onclick="go('knowledge')">
-🌐
-<span class="emoji"></span>
-Knowledge
-</button>
+<button onclick="go('home')">🏠<br>Главная</button>
+<button onclick="go('jarvis')">🎙️<br>JARVIS</button>
+<button onclick="go('vision')">👁️<br>Vision</button>
+<button onclick="go('archive')">🧊<br>3D</button>
+<button onclick="go('memory')">🧠<br>Memory</button>
+<button onclick="go('learn')">📚<br>Learn</button>
+<button onclick="go('tasks')">⏰<br>Tasks</button>
+<button onclick="go('projects')">📁<br>Projects</button>
+<button onclick="go('knowledge')">🌐<br>Knowledge</button>
 
 </nav>
 
 <script>
 
+/* =========================
+   JARVIS CONNECTION
+========================= */
+
 const WORKER_URL =
 "https://raspy-leaf-9581.kirill-astapenko10.workers.dev";
 
+/* =========================
+   STORAGE
+========================= */
+
 const $ = id => document.getElementById(id);
 
-function get(k,d=[]){
-  try{
+function get(key, fallback = []) {
+
+  try {
     return JSON.parse(
-      localStorage.getItem(k) || JSON.stringify(d)
+      localStorage.getItem(key) ||
+      JSON.stringify(fallback)
     );
-  }catch{
-    return d;
+  }
+
+  catch {
+    return fallback;
   }
 }
 
-function set(k,v){
-  localStorage.setItem(k,JSON.stringify(v));
+function set(key, value) {
+  localStorage.setItem(
+    key,
+    JSON.stringify(value)
+  );
 }
 
-function go(id){
+/* =========================
+   NAVIGATION
+========================= */
+
+function go(id) {
 
   document
     .querySelectorAll(".screen")
-    .forEach(x=>x.classList.remove("active"));
+    .forEach(x =>
+      x.classList.remove("active")
+    );
 
-  const screen=$(id);
+  const screen = $(id);
 
-  if(screen) screen.classList.add("active");
-
-  document
-    .querySelectorAll(".nav button")
-    .forEach(x=>x.classList.remove("active"));
+  if (screen)
+    screen.classList.add("active");
 
   window.scrollTo(0,0);
 
   render();
 }
 
-function openSystem(){
-  go("system");
+/* =========================
+   CHAT
+========================= */
+
+function addMsg(text, type) {
+
+  const div =
+    document.createElement("div");
+
+  div.className =
+    "msg " + type;
+
+  div.textContent = text;
+
+  $("chat").appendChild(div);
+
+  $("chat").scrollTop =
+    $("chat").scrollHeight;
 }
 
-function render(){
+function saveChat(role, content) {
 
-  renderTasks();
-  renderProjects();
+  const history =
+    get("chatHistory", []);
+
+  history.push({
+    role,
+    content
+  });
+
+  set(
+    "chatHistory",
+    history.slice(-30)
+  );
+}
+
+function restoreChat() {
+
+  const history =
+    get("chatHistory", []);
+
+  for (const item of history) {
+
+    addMsg(
+      item.content,
+      item.role === "user"
+        ? "me"
+        : "ai"
+    );
+  }
+}
+
+async function ask() {
+
+  const input =
+    $("q");
+
+  const question =
+    input.value.trim();
+
+  if (!question)
+    return;
+
+  addMsg(question, "me");
+
+  saveChat(
+    "user",
+    question
+  );
+
+  input.value = "";
+
+  $("state").textContent =
+    "THINKING";
+
+  const loading =
+    document.createElement("div");
+
+  loading.className =
+    "msg ai loading";
+
+  loading.textContent =
+    "JARVIS думает...";
+
+  $("chat").appendChild(
+    loading
+  );
+
+  $("chat").scrollTop =
+    $("chat").scrollHeight;
+
+  try {
+
+    const history =
+      get("chatHistory", []);
+
+    const memory =
+      get("memory", []);
+
+    const tasks =
+      get("tasks", [])
+      .filter(x => !x.done)
+      .map(x => x.text);
+
+    const response =
+      await fetch(
+        WORKER_URL,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+
+            message:
+              question,
+
+            userName:
+              $("userName").value ||
+              "Создатель",
+
+            length:
+              $("length").value ||
+              "Коротко",
+
+            history:
+              history.slice(-20),
+
+            memory:
+              memory,
+
+            tasks:
+              tasks
+
+          })
+        }
+      );
+
+    const raw =
+      await response.text();
+
+    let data;
+
+    try {
+      data =
+        JSON.parse(raw);
+    }
+
+    catch {
+      throw new Error(
+        "Worker вернул:\n" +
+        raw
+      );
+    }
+
+    loading.remove();
+
+    if (!response.ok ||
+        data.ok === false) {
+
+      throw new Error(
+        data.error ||
+        "Ошибка JARVIS"
+      );
+    }
+
+    const answer =
+      data.answer;
+
+    if (!answer) {
+
+      throw new Error(
+        "ИИ не вернул ответ."
+      );
+    }
+
+    addMsg(
+      answer,
+      "ai"
+    );
+
+    saveChat(
+      "assistant",
+      answer
+    );
+
+    $("state").textContent =
+      "ANSWERING";
+
+    $("workerStatus").textContent =
+      "ONLINE";
+
+    setTimeout(() => {
+
+      $("state").textContent =
+        "SYSTEM READY";
+
+    },1000);
+
+  }
+
+  catch(error) {
+
+    loading.remove();
+
+    addMsg(
+      "Ошибка JARVIS:\n\n" +
+      error.message,
+      "ai"
+    );
+
+    $("state").textContent =
+      "ERROR";
+
+    $("workerStatus").textContent =
+      "ERROR";
+  }
+}
+
+function quick(text) {
+
+  $("q").value =
+    text;
+
+  ask();
+}
+
+/* =========================
+   VOICE
+========================= */
+
+function speak() {
+
+  const Recognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+  if (!Recognition) {
+
+    toast(
+      "Голосовой ввод не поддерживается."
+    );
+
+    return;
+  }
+
+  const recognition =
+    new Recognition();
+
+  recognition.lang =
+    "ru-RU";
+
+  recognition.continuous =
+    false;
+
+  recognition.interimResults =
+    false;
+
+  recognition.onstart =
+    () => {
+      $("state").textContent =
+        "LISTENING";
+    };
+
+  recognition.onresult =
+    event => {
+
+      $("q").value =
+        event.results[0][0]
+          .transcript;
+
+      ask();
+    };
+
+  recognition.onerror =
+    () => {
+
+      $("state").textContent =
+        "SYSTEM READY";
+    };
+
+  recognition.start();
+}
+
+/* =========================
+   VISION
+========================= */
+
+function showPhoto(input) {
+
+  const file =
+    input.files[0];
+
+  if (!file)
+    return;
+
+  const reader =
+    new FileReader();
+
+  reader.onload =
+    event => {
+
+      $("preview").src =
+        event.target.result;
+
+      $("preview").style.display =
+        "block";
+
+      $("visionText").textContent =
+        "Фото готово к анализу.";
+    };
+
+  reader.readAsDataURL(file);
+}
+
+function clearPhoto() {
+
+  $("preview").src = "";
+
+  $("preview").style.display =
+    "none";
+
+  $("visionText").textContent =
+    "Загрузи изображение.";
+}
+
+async function analyzePhoto() {
+
+  const image =
+    $("preview").src;
+
+  if (!image) {
+
+    toast(
+      "Сначала загрузи фото."
+    );
+
+    return;
+  }
+
+  $("state").textContent =
+    "ANALYZING";
+
+  $("visionText").textContent =
+    "JARVIS анализирует фото...";
+
+  try {
+
+    const response =
+      await fetch(
+        WORKER_URL + "/vision",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+
+            image:image,
+
+            prompt:
+              "Проанализируй это изображение. Опиши основные объекты, текст и важные детали. Если есть текст, прочитай его."
+
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if (!response.ok ||
+        data.ok === false) {
+
+      throw new Error(
+        data.error ||
+        "Ошибка Vision"
+      );
+    }
+
+    $("visionText").textContent =
+      data.answer;
+
+  }
+
+  catch(error) {
+
+    $("visionText").textContent =
+      "Ошибка Vision:\n" +
+      error.message;
+  }
+
+  $("state").textContent =
+    "SYSTEM READY";
+}
+
+/* =========================
+   MEMORY
+========================= */
+
+function addMemory() {
+
+  const input =
+    $("memInput");
+
+  const text =
+    input.value.trim();
+
+  if (!text)
+    return;
+
+  const memory =
+    get("memory");
+
+  memory.push({
+
+    text,
+
+    date:
+      new Date()
+        .toLocaleString(
+          "ru-RU"
+        )
+  });
+
+  set(
+    "memory",
+    memory
+  );
+
+  input.value = "";
+
   renderMemory();
-  renderDocs();
-  updateStats();
-
 }
 
-function updateStats(){
+function renderMemory() {
 
-  const tasks=get("tasks");
-
-  const projects=get("projects");
-
-  $("taskStat").textContent =
-    tasks.filter(x=>!x.done).length+" ACTIVE";
-
-  $("projectStat").textContent =
-    projects.length+" ACTIVE";
-
-}
-
-function addTask(){
-
-  const v=$("taskInput").value.trim();
-
-  if(!v)return;
-
-  const a=get("tasks");
-
-  a.push({
-    text:v,
-    done:false
-  });
-
-  set("tasks",a);
-
-  $("taskInput").value="";
-
-  render();
-
-}
-
-function renderTasks(){
-
-  const a=get("tasks");
-
-  $("taskList").innerHTML =
-    a.map((x,i)=>`
-
-      <div
-        class="item ${x.done?"done":""}"
-        onclick="toggleTask(${i})"
-      >
-        ⏰ ${esc(x.text)}
-        <span style="float:right">✓</span>
-      </div>
-
-    `).join("")
-    ||
-    '<p class="small">Задач пока нет.</p>';
-
-}
-
-function toggleTask(i){
-
-  const a=get("tasks");
-
-  if(!a[i])return;
-
-  a[i].done=!a[i].done;
-
-  set("tasks",a);
-
-  render();
-
-}
-
-function addProject(){
-
-  const v=$("projectInput").value.trim();
-
-  if(!v)return;
-
-  const a=get("projects");
-
-  a.push({
-    name:v,
-    date:new Date().toLocaleDateString("ru-RU")
-  });
-
-  set("projects",a);
-
-  $("projectInput").value="";
-
-  render();
-
-}
-
-function renderProjects(){
-
-  const a=get("projects");
-
-  $("projectList").innerHTML =
-    a.map(x=>`
-
-      <div class="item">
-
-        <b>📁 ${esc(x.name)}</b>
-
-        <div class="small">
-          Создан: ${esc(x.date)}
-        </div>
-
-      </div>
-
-    `).join("")
-    ||
-    '<p class="small">Проектов пока нет.</p>';
-
-}
-
-function addMemory(){
-
-  const v=$("memInput").value.trim();
-
-  if(!v)return;
-
-  const a=get("memory");
-
-  a.push({
-    text:v,
-    date:new Date().toLocaleString("ru-RU")
-  });
-
-  set("memory",a);
-
-  $("memInput").value="";
-
-  render();
-
-}
-
-function renderMemory(){
-
-  const a=get("memory");
+  const memory =
+    get("memory");
 
   $("memoryList").innerHTML =
-    a.map((x,i)=>`
+    memory.map(
+      (item,index) => `
 
       <div class="item">
 
-        🧠 ${esc(x.text)}
+        🧠 ${esc(item.text)}
 
         <div class="small">
 
-          ${esc(x.date)}
+          ${esc(item.date)}
 
           <button
             class="btn"
-            onclick="event.stopPropagation();delMemory(${i})"
+            onclick="deleteMemory(${index})"
           >
             Удалить
           </button>
@@ -1058,409 +1136,351 @@ function renderMemory(){
 
       </div>
 
-    `).join("")
+      `
+    ).join("")
     ||
     '<p class="small">Память пуста.</p>';
-
 }
 
-function delMemory(i){
+function deleteMemory(index) {
 
-  const a=get("memory");
+  const memory =
+    get("memory");
 
-  a.splice(i,1);
+  memory.splice(
+    index,
+    1
+  );
 
-  set("memory",a);
+  set(
+    "memory",
+    memory
+  );
 
-  render();
-
+  renderMemory();
 }
 
-function clearMemory(){
+function clearMemory() {
 
-  localStorage.removeItem("memory");
+  localStorage.removeItem(
+    "memory"
+  );
 
-  render();
-
+  renderMemory();
 }
 
-function addDocs(el){
+/* =========================
+   TASKS
+========================= */
 
-  const a=get("docs");
+function addTask() {
 
-  [...el.files].forEach(f=>{
+  const input =
+    $("taskInput");
 
-    a.push({
-      name:f.name,
-      size:f.size
-    });
+  const text =
+    input.value.trim();
 
+  if (!text)
+    return;
+
+  const tasks =
+    get("tasks");
+
+  tasks.push({
+    text,
+    done:false
   });
 
-  set("docs",a);
+  set(
+    "tasks",
+    tasks
+  );
 
-  render();
+  input.value = "";
 
+  renderTasks();
+  updateStats();
 }
 
-function renderDocs(){
+function toggleTask(index) {
 
-  const a=get("docs");
+  const tasks =
+    get("tasks");
 
-  $("docList").innerHTML =
-    a.map(x=>`
+  if (!tasks[index])
+    return;
+
+  tasks[index].done =
+    !tasks[index].done;
+
+  set(
+    "tasks",
+    tasks
+  );
+
+  renderTasks();
+  updateStats();
+}
+
+function renderTasks() {
+
+  const tasks =
+    get("tasks");
+
+  $("taskList").innerHTML =
+    tasks.map(
+      (task,index) => `
+
+      <div
+        class="item ${
+          task.done
+            ? "done"
+            : ""
+        }"
+        onclick="toggleTask(${index})"
+      >
+
+        ⏰ ${esc(task.text)}
+
+        <span
+          style="float:right"
+        >
+          ${task.done
+            ? "✓"
+            : "○"}
+        </span>
+
+      </div>
+
+      `
+    ).join("")
+    ||
+    '<p class="small">Задач пока нет.</p>';
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+function addProject() {
+
+  const input =
+    $("projectInput");
+
+  const name =
+    input.value.trim();
+
+  if (!name)
+    return;
+
+  const projects =
+    get("projects");
+
+  projects.push({
+
+    name,
+
+    date:
+      new Date()
+        .toLocaleDateString(
+          "ru-RU"
+        )
+  });
+
+  set(
+    "projects",
+    projects
+  );
+
+  input.value = "";
+
+  renderProjects();
+  updateStats();
+}
+
+function renderProjects() {
+
+  const projects =
+    get("projects");
+
+  $("projectList").innerHTML =
+    projects.map(
+      project => `
 
       <div class="item">
 
-        📄 ${esc(x.name)}
+        📁 <b>
+        ${esc(project.name)}
+        </b>
 
         <div class="small">
-          ${Math.round(x.size/1024)} KB
+          Создан:
+          ${esc(project.date)}
         </div>
 
       </div>
 
-    `).join("")
+      `
+    ).join("")
     ||
-    '<p class="small">Материалов пока нет.</p>';
-
+    '<p class="small">Проектов пока нет.</p>';
 }
 
-function showPhoto(el){
+/* =========================
+   LEARN
+========================= */
 
-  const f=el.files[0];
+async function learn(mode) {
 
-  if(!f)return;
+  const subject =
+    $("subject").value;
 
-  const r=new FileReader();
+  const topic =
+    $("topic").value.trim();
 
-  r.onload=e=>{
+  if (!topic) {
 
-    $("preview").src=e.target.result;
+    $("learnOut").textContent =
+      "Напиши тему.";
 
-    $("preview").style.display="block";
-
-    $("visionText").textContent =
-      "Изображение загружено. Нажми «Анализировать».";
-
-  };
-
-  r.readAsDataURL(f);
-
-}
-
-function clearPhoto(){
-
-  $("preview").style.display="none";
-
-  $("preview").src="";
-
-  $("visionText").textContent =
-    "Загрузи изображение и нажми «Анализировать».";
-
-}
-
-async function analyzePhoto(){
-
-  const image=$("preview").src;
-
-  if(!image){
-    toast("Сначала загрузи фото.");
     return;
   }
 
-  $("state").textContent="ANALYZING";
+  let prompt = "";
 
-  $("visionText").textContent="JARVIS анализирует изображение...";
+  if (mode === "explain") {
 
-  try{
-
-    const response=await fetch(WORKER_URL,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        message:
-          "Проанализируй изображение. Опиши, что на нём находится, важные детали, текст если он виден, и дай полезный вывод."
-      })
-    });
-
-    const data=await response.json();
-
-    if(!response.ok || data.error){
-      throw new Error(data.error || "Ошибка анализа");
-    }
-
-    $("visionText").textContent=data.answer;
-
-  }catch(error){
-
-    $("visionText").textContent =
-      "Ошибка анализа: "+error.message;
-
+    prompt =
+      `Объясни тему "${topic}" по предмету "${subject}" простыми словами. Добавь примеры и главное, что нужно запомнить.`;
   }
 
-  $("state").textContent="SYSTEM READY";
+  if (mode === "test") {
 
-}
-
-async function ask(){
-
-  const q=$("q").value.trim();
-
-  if(!q)return;
-
-  addMsg(q,"me");
-
-  $("q").value="";
-
-  $("state").textContent="THINKING";
-
-  const loading=document.createElement("div");
-
-  loading.className="msg ai loading";
-
-  loading.textContent="JARVIS думает...";
-
-  $("chat").appendChild(loading);
-
-  $("chat").scrollTop=$("chat").scrollHeight;
-
-  try{
-
-    const memory=get("memory");
-
-    const tasks=get("tasks")
-      .filter(x=>!x.done)
-      .map(x=>x.text);
-
-    const systemInfo=
-      "Имя пользователя: "+
-      ($("userName").value || "Создатель")+
-      "\nПамять пользователя: "+
-      memory.map(x=>x.text).join("; ")+
-      "\nАктивные задачи: "+
-      tasks.join("; ")+
-      "\nДлина ответа: "+
-      $("length").value;
-
-    const response=await fetch(
-      WORKER_URL,
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          message:
-            systemInfo+
-            "\n\nСообщение пользователя:\n"+
-            q
-        })
-      }
-    );
-
-    const data=await response.json();
-
-    loading.remove();
-
-    if(!response.ok || data.error){
-
-      addMsg(
-        "Ошибка JARVIS: "+
-        (data.error || "неизвестная ошибка"),
-        "ai"
-      );
-
-      $("state").textContent="ERROR";
-
-      return;
-
-    }
-
-    addMsg(data.answer,"ai");
-
-    $("state").textContent="ANSWERING";
-
-    setTimeout(()=>{
-      $("state").textContent="SYSTEM READY";
-    },800);
-
-  }catch(error){
-
-    loading.remove();
-
-    addMsg(
-      "Не удалось подключиться к JARVIS.\n\n"+
-      error.message,
-      "ai"
-    );
-
-    $("state").textContent="OFFLINE";
-
+    prompt =
+      `Проведи тест по теме "${topic}" по предмету "${subject}". Задавай вопросы по одному.`;
   }
 
-}
+  if (mode === "summary") {
 
-function quick(t){
-
-  $("q").value=t;
-
-  ask();
-
-}
-
-function addMsg(t,c){
-
-  const d=document.createElement("div");
-
-  d.className="msg "+c;
-
-  d.textContent=t;
-
-  $("chat").appendChild(d);
-
-  $("chat").scrollTop=
-    $("chat").scrollHeight;
-
-}
-
-function speak(){
-
-  const Recognition=
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
-
-  if(!Recognition){
-
-    toast(
-      "Голосовой ввод не поддерживается этим браузером."
-    );
-
-    return;
-
+    prompt =
+      `Сделай понятный конспект по теме "${topic}" по предмету "${subject}". Выдели определения, правила и главное.`;
   }
 
-  const r=new Recognition();
-
-  r.lang="ru-RU";
-
-  r.continuous=false;
-
-  r.interimResults=false;
-
-  r.onstart=()=>{
-
-    $("state").textContent="LISTENING";
-
-  };
-
-  r.onresult=e=>{
-
-    $("q").value=
-      e.results[0][0].transcript;
-
-    ask();
-
-  };
-
-  r.onerror=()=>{
-
-    $("state").textContent="SYSTEM READY";
-
-  };
-
-  r.onend=()=>{
-
-    if($("state").textContent==="LISTENING"){
-      $("state").textContent="SYSTEM READY";
-    }
-
-  };
-
-  r.start();
-
-}
-
-async function learn(mode){
-
-  const subject=$("subject").value;
-
-  const topic=
-    $("topic").value.trim() ||
-    "выбранную тему";
-
-  let instruction="";
-
-  if(mode==="explain"){
-
-    instruction=
-      "Объясни тему "+topic+
-      " по предмету "+subject+
-      " простыми словами, как ученику. "+
-      "Добавь примеры и основные правила.";
-
-  }
-
-  if(mode==="test"){
-
-    instruction=
-      "Проведи небольшой тест по теме "+
-      topic+
-      " по предмету "+subject+
-      ". Задавай вопросы по одному и жди ответа пользователя.";
-
-  }
-
-  if(mode==="summary"){
-
-    instruction=
-      "Сделай понятный структурированный конспект "+
-      "по теме "+topic+
-      " по предмету "+subject+
-      ". Выдели главное и важные определения.";
-
-  }
-
-  $("learnOut").textContent=
+  $("learnOut").textContent =
     "JARVIS готовит ответ...";
 
-  try{
+  try {
 
-    const response=await fetch(
-      WORKER_URL,
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          message:instruction
-        })
-      }
-    );
+    const response =
+      await fetch(
+        WORKER_URL,
+        {
+          method:"POST",
 
-    const data=await response.json();
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
 
-    if(!response.ok || data.error){
+          body:JSON.stringify({
+            message:prompt,
+            userName:"Создатель",
+            length:"Подробно"
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if (!response.ok ||
+        data.ok === false) {
+
       throw new Error(
-        data.error || "Ошибка"
+        data.error ||
+        "Ошибка"
       );
     }
 
-    $("learnOut").textContent=data.answer;
-
-  }catch(error){
-
-    $("learnOut").textContent=
-      "Ошибка: "+error.message;
+    $("learnOut").textContent =
+      data.answer;
 
   }
 
+  catch(error) {
+
+    $("learnOut").textContent =
+      "Ошибка:\n" +
+      error.message;
+  }
 }
 
-function saveSettings(){
+/* =========================
+   KNOWLEDGE
+========================= */
+
+function addDocs(input) {
+
+  const docs =
+    get("docs");
+
+  for (const file of input.files) {
+
+    docs.push({
+
+      name:file.name,
+
+      size:file.size,
+
+      date:
+        new Date()
+          .toLocaleString(
+            "ru-RU"
+          )
+    });
+  }
+
+  set(
+    "docs",
+    docs
+  );
+
+  renderDocs();
+}
+
+function renderDocs() {
+
+  const docs =
+    get("docs");
+
+  $("docList").innerHTML =
+    docs.map(
+      doc => `
+
+      <div class="item">
+
+        📄 ${esc(doc.name)}
+
+        <div class="small">
+          ${Math.round(
+            doc.size / 1024
+          )} KB
+        </div>
+
+      </div>
+
+      `
+    ).join("")
+    ||
+    '<p class="small">Материалов пока нет.</p>';
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+function saveSettings() {
 
   localStorage.setItem(
     "userName",
@@ -1471,83 +1491,174 @@ function saveSettings(){
     "length",
     $("length").value
   );
-
 }
 
-function loadSettings(){
+function loadSettings() {
 
-  const name=
-    localStorage.getItem("userName");
+  const name =
+    localStorage.getItem(
+      "userName"
+    );
 
-  const length=
-    localStorage.getItem("length");
+  const length =
+    localStorage.getItem(
+      "length"
+    );
 
-  if(name)
-    $("userName").value=name;
+  if (name)
+    $("userName").value =
+      name;
 
-  if(length)
-    $("length").value=length;
-
+  if (length)
+    $("length").value =
+      length;
 }
 
-function clearAll(){
+/* =========================
+   STATUS
+========================= */
 
-  if(confirm(
-    "Удалить локальные данные JARVIS?"
-  )){
+async function checkWorker() {
+
+  try {
+
+    const response =
+      await fetch(
+        WORKER_URL,
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
+
+    if (!response.ok)
+      throw new Error();
+
+    const data =
+      await response.json();
+
+    if (data.ok) {
+
+      $("workerStatus")
+        .textContent =
+        "ONLINE";
+
+      $("aiStatus")
+        .textContent =
+        "READY";
+    }
+
+  }
+
+  catch {
+
+    $("workerStatus")
+      .textContent =
+      "OFFLINE";
+
+    $("aiStatus")
+      .textContent =
+      "OFFLINE";
+  }
+}
+
+function netStatus() {
+
+  const online =
+    navigator.onLine;
+
+  $("net").textContent =
+    online
+      ? "ONLINE"
+      : "OFFLINE";
+
+  $("net2").textContent =
+    online
+      ? "ONLINE"
+      : "OFFLINE";
+
+  $("net2").className =
+    online
+      ? "good"
+      : "";
+
+  if (!online) {
+
+    $("state").textContent =
+      "OFFLINE MODE";
+  }
+}
+
+/* =========================
+   UTILS
+========================= */
+
+function updateStats() {
+
+  const tasks =
+    get("tasks");
+
+  const projects =
+    get("projects");
+
+  $("taskStat").textContent =
+    tasks.filter(
+      x => !x.done
+    ).length +
+    " ACTIVE";
+
+  $("projectStat").textContent =
+    projects.length +
+    " ACTIVE";
+}
+
+function esc(text) {
+
+  return String(text)
+    .replace(
+      /[&<>"']/g,
+      char => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+      }[char])
+    );
+}
+
+function toast(text) {
+  alert(text);
+}
+
+function clearAll() {
+
+  if (
+    confirm(
+      "Удалить все локальные данные JARVIS?"
+    )
+  ) {
 
     localStorage.clear();
 
     location.reload();
-
   }
-
 }
 
-function esc(s){
-
-  return String(s).replace(
-    /[&<>"']/g,
-    m=>({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
-    }[m])
-  );
-
-}
-
-function net(){
-
-  const online=navigator.onLine;
-
-  $("net").textContent=
-    online?"ONLINE":"OFFLINE";
-
-  $("net2").textContent=
-    online?"ONLINE":"OFFLINE";
-
-  $("net2").className=
-    online?"good":"";
-
-  if(!online)
-    $("state").textContent="OFFLINE MODE";
-
-}
-
-function toast(t){
-
-  alert(t);
-
-}
+/* =========================
+   EVENTS
+========================= */
 
 $("q").addEventListener(
   "keydown",
-  e=>{
-    if(e.key==="Enter"){
-      e.preventDefault();
+  event => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      event.preventDefault();
+
       ask();
     }
   }
@@ -1555,9 +1666,14 @@ $("q").addEventListener(
 
 $("taskInput").addEventListener(
   "keydown",
-  e=>{
-    if(e.key==="Enter"){
-      e.preventDefault();
+  event => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      event.preventDefault();
+
       addTask();
     }
   }
@@ -1565,29 +1681,52 @@ $("taskInput").addEventListener(
 
 $("memInput").addEventListener(
   "keydown",
-  e=>{
-    if(e.key==="Enter"){
-      e.preventDefault();
+  event => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      event.preventDefault();
+
       addMemory();
     }
   }
 );
 
-window.addEventListener("online",net);
-window.addEventListener("offline",net);
+window.addEventListener(
+  "online",
+  netStatus
+);
 
-net();
+window.addEventListener(
+  "offline",
+  netStatus
+);
+
+/* =========================
+   START
+========================= */
 
 loadSettings();
 
-render();
+renderTasks();
+renderProjects();
+renderMemory();
+renderDocs();
+updateStats();
+netStatus();
+checkWorker();
 
-if("serviceWorker" in navigator){
+if (
+  "serviceWorker" in navigator
+) {
 
   navigator.serviceWorker
-    .register("sw.js")
-    .catch(()=>{});
-
+    .register(
+      "sw.js"
+    )
+    .catch(() => {});
 }
 
 </script>
