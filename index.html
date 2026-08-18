@@ -9,60 +9,292 @@
 <meta name="apple-mobile-web-app-title" content="JARVIS">
 <link rel="manifest" href="manifest.json">
 <title>JARVIS</title>
+
 <style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;color:#eaf8ff;background:#04080b}
+:root{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+  color:#eaf8ff;
+  background:#04080b
+}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 50% 0,#0b2029 0,#04080b 42%);min-height:100vh}
+body{
+  margin:0;
+  background:radial-gradient(circle at 50% 0,#0b2029 0,#04080b 42%);
+  min-height:100vh
+}
 button,input,textarea,select{font:inherit}
-.app{max-width:760px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 14px calc(90px + env(safe-area-inset-bottom))}
-header{height:62px;display:flex;align-items:center;gap:9px}
-.dot{width:9px;height:9px;border-radius:50%;background:#36ff9b;box-shadow:0 0 15px #36ff9b}
-.brand{font-weight:800;letter-spacing:3px}
-.online{font-size:11px;color:#6dffb0}
+button{cursor:pointer}
+.app{
+  max-width:760px;
+  margin:auto;
+  min-height:100vh;
+  padding:env(safe-area-inset-top) 14px calc(90px + env(safe-area-inset-bottom))
+}
+header{
+  height:62px;
+  display:flex;
+  align-items:center;
+  gap:9px
+}
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#36ff9b;
+  box-shadow:0 0 15px #36ff9b
+}
+.brand{
+  font-weight:800;
+  letter-spacing:3px
+}
+.online{
+  font-size:11px;
+  color:#6dffb0
+}
 .grow{flex:1}
-.iconbtn{border:1px solid #20353e;background:#0b1419;color:#dff7ff;border-radius:13px;padding:9px 11px}
+.iconbtn{
+  border:1px solid #20353e;
+  background:#0b1419;
+  color:#dff7ff;
+  border-radius:13px;
+  padding:9px 11px
+}
 .screen{display:none}
 .screen.active{display:block}
 .hero{text-align:center;padding:12px 0 18px}
-.core{width:150px;height:150px;border-radius:50%;margin:8px auto 16px;display:grid;place-items:center;border:1px solid #38d9ff;box-shadow:0 0 18px #0aa0c0,inset 0 0 35px #062e3a;position:relative;background:radial-gradient(circle,#163b48 0,#07141a 45%,#03070a 70%);animation:pulse 3s infinite}
-.core:before,.core:after{content:"";position:absolute;border:1px solid #29b9dd;border-radius:50%}
+.core{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  margin:8px auto 16px;
+  display:grid;
+  place-items:center;
+  border:1px solid #38d9ff;
+  box-shadow:0 0 18px #0aa0c0,inset 0 0 35px #062e3a;
+  position:relative;
+  background:radial-gradient(circle,#163b48 0,#07141a 45%,#03070a 70%);
+  animation:pulse 3s infinite
+}
+.core:before,.core:after{
+  content:"";
+  position:absolute;
+  border:1px solid #29b9dd;
+  border-radius:50%
+}
 .core:before{inset:14px}
-.core:after{inset:31px;border-style:dashed;animation:spin 8s linear infinite}
-.core span{font-weight:800;letter-spacing:2px}
-.state{font-size:12px;color:#7da7b5;letter-spacing:1px}
-.welcome{font-size:16px;margin-top:8px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.tile{border:1px solid #19303a;background:linear-gradient(145deg,#0a141a,#071016);border-radius:18px;padding:15px;text-align:left;color:#eaf8ff}
-.tile b{display:block;margin:6px 0 3px}
+.core:after{
+  inset:31px;
+  border-style:dashed;
+  animation:spin 8s linear infinite
+}
+.core span{
+  font-weight:800;
+  letter-spacing:2px
+}
+.state{
+  font-size:12px;
+  color:#7da7b5;
+  letter-spacing:1px
+}
+.welcome{
+  font-size:16px;
+  margin-top:8px
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
+.tile{
+  border:1px solid #19303a;
+  background:linear-gradient(145deg,#0a141a,#071016);
+  border-radius:18px;
+  padding:15px;
+  text-align:left;
+  color:#eaf8ff
+}
+.tile b{
+  display:block;
+  margin:6px 0 3px
+}
 .tile small{color:#76939f}
-.panel{border:1px solid #19303a;background:#071016;border-radius:20px;padding:15px;margin:10px 0}
-.row{display:flex;gap:8px;align-items:center}
+.panel{
+  border:1px solid #19303a;
+  background:#071016;
+  border-radius:20px;
+  padding:15px;
+  margin:10px 0
+}
+.row{
+  display:flex;
+  gap:8px;
+  align-items:center
+}
 .row>*{min-width:0}
-.stat{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #13262e;color:#91aab4}
+.stat{
+  display:flex;
+  justify-content:space-between;
+  padding:9px 0;
+  border-bottom:1px solid #13262e;
+  color:#91aab4
+}
 .good{color:#5cffaa}
-.input{width:100%;background:#091218;color:#eaf8ff;border:1px solid #20353e;border-radius:13px;padding:12px;outline:none}
-.btn{background:#0e2028;color:#dff7ff;border:1px solid #24404a;border-radius:13px;padding:11px 13px}
-.btn.primary{background:#38e69a;color:#03110b;border-color:#38e69a;font-weight:700}
-.chat{display:flex;flex-direction:column;gap:9px;max-height:55vh;overflow:auto}
-.msg{max-width:88%;padding:11px 13px;border-radius:16px;white-space:pre-wrap}
-.ai{background:#0b171d;border:1px solid #1a323c;align-self:flex-start}
-.me{background:#103447;align-self:flex-end}
-.composer{display:flex;gap:8px;margin-top:10px}
-.list{display:flex;flex-direction:column;gap:8px}
-.item{padding:12px;border:1px solid #1a313b;background:#091319;border-radius:14px}
-.item.done{opacity:.5;text-decoration:line-through}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(760px,100%);padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(3,8,11,.94);backdrop-filter:blur(18px);display:flex;gap:5px;overflow-x:auto;border-top:1px solid #172b33;z-index:4}
-.nav button{flex:0 0 auto;min-width:68px;background:transparent;border:0;color:#6f8994;padding:7px 5px;border-radius:12px;font-size:11px}
-.nav button.active{background:#10232b;color:#56ffac}
-.nav .emoji{font-size:20px;display:block;margin-bottom:3px}
-.upload{border:1px dashed #28505c;border-radius:15px;padding:20px;text-align:center;color:#8aa7b2}
-.preview{max-width:100%;border-radius:15px;margin-top:10px;display:none}
-.chips{display:flex;gap:7px;flex-wrap:wrap}
-.chip{background:#0c1b21;border:1px solid #1e3a45;border-radius:999px;padding:7px 10px;font-size:12px}
-.small{font-size:12px;color:#718c97;line-height:1.45}
-@keyframes pulse{50%{transform:scale(1.04);box-shadow:0 0 35px #0aa0c0,inset 0 0 45px #073b49}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}}
+.input{
+  width:100%;
+  background:#091218;
+  color:#eaf8ff;
+  border:1px solid #20353e;
+  border-radius:13px;
+  padding:12px;
+  outline:none
+}
+.input:focus{
+  border-color:#38d9ff;
+  box-shadow:0 0 12px #083c4a
+}
+.btn{
+  background:#0e2028;
+  color:#dff7ff;
+  border:1px solid #24404a;
+  border-radius:13px;
+  padding:11px 13px
+}
+.btn.primary{
+  background:#38e69a;
+  color:#03110b;
+  border-color:#38e69a;
+  font-weight:700
+}
+.chat{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  max-height:55vh;
+  overflow:auto
+}
+.msg{
+  max-width:88%;
+  padding:11px 13px;
+  border-radius:16px;
+  white-space:pre-wrap;
+  word-break:break-word
+}
+.ai{
+  background:#0b171d;
+  border:1px solid #1a323c;
+  align-self:flex-start
+}
+.me{
+  background:#103447;
+  align-self:flex-end
+}
+.composer{
+  display:flex;
+  gap:8px;
+  margin-top:10px
+}
+.composer .input{flex:1}
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+.item{
+  padding:12px;
+  border:1px solid #1a313b;
+  background:#091319;
+  border-radius:14px
+}
+.item.done{
+  opacity:.5;
+  text-decoration:line-through
+}
+.nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(760px,100%);
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(3,8,11,.94);
+  backdrop-filter:blur(18px);
+  display:flex;
+  gap:5px;
+  overflow-x:auto;
+  border-top:1px solid #172b33;
+  z-index:4
+}
+.nav button{
+  flex:0 0 auto;
+  min-width:68px;
+  background:transparent;
+  border:0;
+  color:#6f8994;
+  padding:7px 5px;
+  border-radius:12px;
+  font-size:11px
+}
+.nav button.active{
+  background:#10232b;
+  color:#56ffac
+}
+.nav .emoji{
+  font-size:20px;
+  display:block;
+  margin-bottom:3px
+}
+.upload{
+  display:block;
+  border:1px dashed #28505c;
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  color:#8aa7b2;
+  cursor:pointer
+}
+.preview{
+  max-width:100%;
+  border-radius:15px;
+  margin-top:10px;
+  display:none
+}
+.chips{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap
+}
+.chip{
+  background:#0c1b21;
+  border:1px solid #1e3a45;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  color:#dff7ff
+}
+.small{
+  font-size:12px;
+  color:#718c97;
+  line-height:1.45
+}
+.loading{
+  opacity:.7;
+  animation:blink 1s infinite
+}
+@keyframes pulse{
+  50%{
+    transform:scale(1.04);
+    box-shadow:0 0 35px #0aa0c0,inset 0 0 45px #073b49
+  }
+}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+@keyframes blink{
+  50%{opacity:.35}
+}
+@media(min-width:650px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
 
@@ -81,6 +313,7 @@ header{height:62px;display:flex;align-items:center;gap:9px}
 <section id="home" class="screen active">
 
 <div class="hero">
+
 <div class="core" id="core">
 <span>JARVIS</span>
 </div>
@@ -90,6 +323,7 @@ header{height:62px;display:flex;align-items:center;gap:9px}
 <div class="welcome">
 Добрый день, Создатель. Все основные системы готовы.
 </div>
+
 </div>
 
 <div class="panel">
@@ -181,7 +415,6 @@ header{height:62px;display:flex;align-items:center;gap:9px}
 
 </section>
 
-
 <section id="jarvis" class="screen">
 
 <h2>🎙️ JARVIS</h2>
@@ -191,7 +424,7 @@ header{height:62px;display:flex;align-items:center;gap:9px}
 <div id="chat" class="chat">
 
 <div class="msg ai">
-Создатель, я готов. Коротко и по делу.
+Создатель, я готов. Задайте вопрос.
 </div>
 
 </div>
@@ -202,6 +435,7 @@ header{height:62px;display:flex;align-items:center;gap:9px}
 id="q"
 class="input"
 placeholder="Джарвис, ..."
+autocomplete="off"
 >
 
 <button class="btn primary" onclick="ask()">➤</button>
@@ -222,18 +456,17 @@ placeholder="Джарвис, ..."
 Что сегодня?
 </button>
 
-<button class="chip" onclick="quick('запомни это')">
-Запомни это
+<button class="chip" onclick="quick('что ты умеешь?')">
+Что ты умеешь?
 </button>
 
-<button class="chip" onclick="quick('проанализируй')">
-Проанализируй
+<button class="chip" onclick="quick('запомни это')">
+Запомни это
 </button>
 
 </div>
 
 </section>
-
 
 <section id="vision" class="screen">
 
@@ -260,7 +493,7 @@ onchange="showPhoto(this)"
 
 <div class="row" style="margin-top:10px">
 
-<button class="btn primary" onclick="demoAnalyze()">
+<button class="btn primary" onclick="analyzePhoto()">
 Анализировать
 </button>
 
@@ -271,23 +504,12 @@ onchange="showPhoto(this)"
 </div>
 
 <p id="visionText" class="small">
-Загрузи изображение — здесь можно будет подключить реальный анализ зрения.
-</p>
-
-</div>
-
-<div class="panel">
-
-<b>Возможности</b>
-
-<p class="small">
-Объекты • OCR • документы • скриншоты • схемы • графики • школьные задания • поиск ошибок • краткий/подробный анализ.
+Загрузи изображение и нажми «Анализировать».
 </p>
 
 </div>
 
 </section>
-
 
 <section id="archive" class="screen">
 
@@ -301,13 +523,13 @@ onchange="showPhoto(this)"
 
 <button
 class="btn primary"
-onclick="toast('Камера для 3D-сканирования будет подключена на следующем этапе.')"
+onclick="toast('3D-сканирование подключим отдельным модулем.')"
 >
 📷 Сканировать объект
 </button>
 
 <p class="small">
-Хранилище моделей, версии, описание, измерения, анализ конструкции и ASK JARVIS — интерфейс уже подготовлен.
+Архив моделей и данные объектов.
 </p>
 
 </div>
@@ -315,7 +537,6 @@ onclick="toast('Камера для 3D-сканирования будет по�
 <div id="models" class="list"></div>
 
 </section>
-
 
 <section id="memory" class="screen">
 
@@ -341,7 +562,7 @@ onclick="addMemory()"
 </div>
 
 <p class="small">
-Память хранится локально в браузере. Позже её можно связать с настоящим ИИ.
+Локальная память JARVIS.
 </p>
 
 </div>
@@ -353,7 +574,6 @@ onclick="addMemory()"
 </button>
 
 </section>
-
 
 <section id="learn" class="screen">
 
@@ -403,7 +623,6 @@ placeholder="Тема"
 
 </section>
 
-
 <section id="tasks" class="screen">
 
 <h2>⏰ TASKS</h2>
@@ -433,7 +652,6 @@ onclick="addTask()"
 
 </section>
 
-
 <section id="projects" class="screen">
 
 <h2>📁 PROJECTS</h2>
@@ -460,7 +678,6 @@ onclick="addProject()"
 
 </section>
 
-
 <section id="knowledge" class="screen">
 
 <h2>🌐 KNOWLEDGE</h2>
@@ -475,7 +692,7 @@ onclick="addProject()"
 id="docs"
 type="file"
 multiple
-accept=".pdf,.txt,.md,.doc,.docx,image/*"
+accept=".txt,.md,image/*"
 hidden
 onchange="addDocs(this)"
 >
@@ -495,14 +712,12 @@ style="margin-top:10px"
 <b>База знаний</b>
 
 <p class="small">
-PDF • TXT • документы • изображения • учебные материалы.
-Реальный поиск по содержимому и интернет-поиск подключаются через backend.
+Локальные материалы будут храниться в браузере.
 </p>
 
 </div>
 
 </section>
-
 
 <section id="system" class="screen">
 
@@ -563,13 +778,12 @@ onchange="saveSettings()"
 </button>
 
 <p class="small">
-Версия интерфейса: 1.0 • Online/Offline определяется автоматически.
+JARVIS v2.0 • AI ONLINE
 </p>
 
 </section>
 
 </div>
-
 
 <nav class="nav">
 
@@ -629,581 +843,752 @@ Knowledge
 
 </nav>
 
-
 <script>
 
-const $=id=>document.getElementById(id);
+const WORKER_URL =
+"https://raspy-leaf-9581.kirill-astapenko10.workers.dev";
 
-const get=(k,d=[])=>JSON.parse(
-localStorage.getItem(k)||JSON.stringify(d)
-);
+const $ = id => document.getElementById(id);
 
-const set=(k,v)=>
-localStorage.setItem(k,JSON.stringify(v));
+function get(k,d=[]){
+  try{
+    return JSON.parse(
+      localStorage.getItem(k) || JSON.stringify(d)
+    );
+  }catch{
+    return d;
+  }
+}
 
+function set(k,v){
+  localStorage.setItem(k,JSON.stringify(v));
+}
 
 function go(id){
 
-document
-.querySelectorAll('.screen')
-.forEach(x=>x.classList.remove('active'));
+  document
+    .querySelectorAll(".screen")
+    .forEach(x=>x.classList.remove("active"));
 
-$(id).classList.add('active');
+  const screen=$(id);
 
-document
-.querySelectorAll('.nav button')
-.forEach(x=>x.classList.remove('active'));
+  if(screen) screen.classList.add("active");
 
-window.scrollTo(0,0);
+  document
+    .querySelectorAll(".nav button")
+    .forEach(x=>x.classList.remove("active"));
 
-render();
+  window.scrollTo(0,0);
 
+  render();
 }
-
 
 function openSystem(){
-go('system');
+  go("system");
 }
-
 
 function render(){
 
-renderTasks();
-renderProjects();
-renderMemory();
-renderDocs();
-updateStats();
+  renderTasks();
+  renderProjects();
+  renderMemory();
+  renderDocs();
+  updateStats();
 
 }
-
 
 function updateStats(){
 
-$('taskStat').textContent=
-get('tasks').filter(x=>!x.done).length+' ACTIVE';
+  const tasks=get("tasks");
 
-$('projectStat').textContent=
-get('projects').length+' ACTIVE';
+  const projects=get("projects");
+
+  $("taskStat").textContent =
+    tasks.filter(x=>!x.done).length+" ACTIVE";
+
+  $("projectStat").textContent =
+    projects.length+" ACTIVE";
 
 }
-
 
 function addTask(){
 
-let v=$('taskInput').value.trim();
+  const v=$("taskInput").value.trim();
 
-if(!v)return;
+  if(!v)return;
 
-let a=get('tasks');
+  const a=get("tasks");
 
-a.push({
-text:v,
-done:false
-});
+  a.push({
+    text:v,
+    done:false
+  });
 
-set('tasks',a);
+  set("tasks",a);
 
-$('taskInput').value='';
+  $("taskInput").value="";
 
-render();
+  render();
 
 }
-
 
 function renderTasks(){
 
-$('taskList').innerHTML=
-get('tasks')
-.map((x,i)=>`
+  const a=get("tasks");
 
-<div
-class="item ${x.done?'done':''}"
-onclick="toggleTask(${i})"
->
-⏰ ${esc(x.text)}
-<span style="float:right">✓</span>
-</div>
+  $("taskList").innerHTML =
+    a.map((x,i)=>`
 
-`)
-.join('')
+      <div
+        class="item ${x.done?"done":""}"
+        onclick="toggleTask(${i})"
+      >
+        ⏰ ${esc(x.text)}
+        <span style="float:right">✓</span>
+      </div>
 
-||
-
-'<p class="small">Задач пока нет.</p>';
+    `).join("")
+    ||
+    '<p class="small">Задач пока нет.</p>';
 
 }
-
 
 function toggleTask(i){
 
-let a=get('tasks');
+  const a=get("tasks");
 
-a[i].done=!a[i].done;
+  if(!a[i])return;
 
-set('tasks',a);
+  a[i].done=!a[i].done;
 
-render();
+  set("tasks",a);
+
+  render();
 
 }
-
 
 function addProject(){
 
-let v=$('projectInput').value.trim();
+  const v=$("projectInput").value.trim();
 
-if(!v)return;
+  if(!v)return;
 
-let a=get('projects');
+  const a=get("projects");
 
-a.push({
-name:v,
-date:new Date().toLocaleDateString('ru-RU')
-});
+  a.push({
+    name:v,
+    date:new Date().toLocaleDateString("ru-RU")
+  });
 
-set('projects',a);
+  set("projects",a);
 
-$('projectInput').value='';
+  $("projectInput").value="";
 
-render();
+  render();
 
 }
-
 
 function renderProjects(){
 
-$('projectList').innerHTML=
-get('projects')
-.map(x=>`
+  const a=get("projects");
 
-<div class="item">
+  $("projectList").innerHTML =
+    a.map(x=>`
 
-<b>📁 ${esc(x.name)}</b>
+      <div class="item">
 
-<div class="small">
-Создан: ${x.date} • Память проекта • Файлы • Задачи
-</div>
+        <b>📁 ${esc(x.name)}</b>
 
-</div>
+        <div class="small">
+          Создан: ${esc(x.date)}
+        </div>
 
-`)
-.join('')
+      </div>
 
-||
-
-'<p class="small">Проектов пока нет.</p>';
+    `).join("")
+    ||
+    '<p class="small">Проектов пока нет.</p>';
 
 }
-
 
 function addMemory(){
 
-let v=$('memInput').value.trim();
+  const v=$("memInput").value.trim();
 
-if(!v)return;
+  if(!v)return;
 
-let a=get('memory');
+  const a=get("memory");
 
-a.push({
-text:v,
-date:new Date().toLocaleString('ru-RU')
-});
+  a.push({
+    text:v,
+    date:new Date().toLocaleString("ru-RU")
+  });
 
-set('memory',a);
+  set("memory",a);
 
-$('memInput').value='';
+  $("memInput").value="";
 
-render();
+  render();
 
 }
-
 
 function renderMemory(){
 
-$('memoryList').innerHTML=
-get('memory')
-.map((x,i)=>`
+  const a=get("memory");
 
-<div class="item">
+  $("memoryList").innerHTML =
+    a.map((x,i)=>`
 
-🧠 ${esc(x.text)}
+      <div class="item">
 
-<div class="small">
+        🧠 ${esc(x.text)}
 
-${x.date}
+        <div class="small">
 
-<button
-class="btn"
-onclick="delMemory(${i})"
->
-Удалить
-</button>
+          ${esc(x.date)}
 
-</div>
+          <button
+            class="btn"
+            onclick="event.stopPropagation();delMemory(${i})"
+          >
+            Удалить
+          </button>
 
-</div>
+        </div>
 
-`)
-.join('')
+      </div>
 
-||
-
-'<p class="small">Память пуста.</p>';
+    `).join("")
+    ||
+    '<p class="small">Память пуста.</p>';
 
 }
-
 
 function delMemory(i){
 
-let a=get('memory');
+  const a=get("memory");
 
-a.splice(i,1);
+  a.splice(i,1);
 
-set('memory',a);
+  set("memory",a);
 
-render();
+  render();
 
 }
-
 
 function clearMemory(){
 
-localStorage.removeItem('memory');
+  localStorage.removeItem("memory");
 
-render();
+  render();
 
 }
-
 
 function addDocs(el){
 
-let a=get('docs');
+  const a=get("docs");
 
-[...el.files].forEach(f=>
-a.push({
-name:f.name,
-size:f.size
-})
-);
+  [...el.files].forEach(f=>{
 
-set('docs',a);
+    a.push({
+      name:f.name,
+      size:f.size
+    });
 
-render();
+  });
+
+  set("docs",a);
+
+  render();
 
 }
-
 
 function renderDocs(){
 
-$('docList').innerHTML=
-get('docs')
-.map(x=>`
+  const a=get("docs");
 
-<div class="item">
+  $("docList").innerHTML =
+    a.map(x=>`
 
-📄 ${esc(x.name)}
+      <div class="item">
 
-<div class="small">
-${Math.round(x.size/1024)} KB
-</div>
+        📄 ${esc(x.name)}
 
-</div>
+        <div class="small">
+          ${Math.round(x.size/1024)} KB
+        </div>
 
-`)
-.join('');
+      </div>
+
+    `).join("")
+    ||
+    '<p class="small">Материалов пока нет.</p>';
 
 }
-
 
 function showPhoto(el){
 
-let f=el.files[0];
+  const f=el.files[0];
 
-if(!f)return;
+  if(!f)return;
 
-let r=new FileReader();
+  const r=new FileReader();
 
-r.onload=e=>{
+  r.onload=e=>{
 
-$('preview').src=e.target.result;
+    $("preview").src=e.target.result;
 
-$('preview').style.display='block';
+    $("preview").style.display="block";
 
-$('visionText').textContent=
-'Изображение загружено. Нажми «Анализировать».';
+    $("visionText").textContent =
+      "Изображение загружено. Нажми «Анализировать».";
 
-};
+  };
 
-r.readAsDataURL(f);
+  r.readAsDataURL(f);
 
 }
-
 
 function clearPhoto(){
 
-$('preview').style.display='none';
+  $("preview").style.display="none";
 
-$('preview').src='';
+  $("preview").src="";
 
-$('visionText').textContent=
-'Загрузи изображение — здесь можно будет подключить реальный анализ зрения.';
-
-}
-
-
-function demoAnalyze(){
-
-if(!$('preview').src)
-return toast('Сначала загрузи фото.');
-
-$('state').textContent='ANALYZING';
-
-setTimeout(()=>{
-
-go('vision');
-
-$('visionText').textContent=
-'Интерфейс анализа готов. Для настоящего распознавания объектов, текста и схем подключим модель Vision через безопасный backend.';
-
-$('state').textContent='SYSTEM READY';
-
-},700);
+  $("visionText").textContent =
+    "Загрузи изображение и нажми «Анализировать».";
 
 }
 
+async function analyzePhoto(){
 
-function ask(){
+  const image=$("preview").src;
 
-let q=$('q').value.trim();
+  if(!image){
+    toast("Сначала загрузи фото.");
+    return;
+  }
 
-if(!q)return;
+  $("state").textContent="ANALYZING";
 
-addMsg(q,'me');
+  $("visionText").textContent="JARVIS анализирует изображение...";
 
-$('q').value='';
+  try{
 
-$('state').textContent='THINKING';
+    const response=await fetch(WORKER_URL,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        message:
+          "Проанализируй изображение. Опиши, что на нём находится, важные детали, текст если он виден, и дай полезный вывод."
+      })
+    });
 
-setTimeout(()=>{
+    const data=await response.json();
 
-let t=q.toLowerCase();
+    if(!response.ok || data.error){
+      throw new Error(data.error || "Ошибка анализа");
+    }
 
-let ans;
+    $("visionText").textContent=data.answer;
 
-if(t.includes('статус')){
+  }catch(error){
 
-ans=
-'Все основные системы готовы. MEMORY — ACTIVE, VISION — READY, 3D SCANNER — READY.';
+    $("visionText").textContent =
+      "Ошибка анализа: "+error.message;
 
-}
+  }
 
-else if(t.includes('сегодня')){
-
-ans=
-'Сейчас в задачах '+get('tasks').filter(x=>!x.done).length+' активных задач.';
-
-}
-
-else if(t.includes('запомни')){
-
-ans=
-'Скажи, что именно запомнить, и я добавлю это в локальную память.';
-
-}
-
-else{
-
-ans=
-'Принято, Создатель. Сейчас это демонстрационный режим. После подключения backend я смогу отвечать через настоящий ИИ и использовать твою базу знаний.';
+  $("state").textContent="SYSTEM READY";
 
 }
 
-addMsg(ans,'ai');
+async function ask(){
 
-$('state').textContent='ANSWERING';
+  const q=$("q").value.trim();
 
-},500);
+  if(!q)return;
+
+  addMsg(q,"me");
+
+  $("q").value="";
+
+  $("state").textContent="THINKING";
+
+  const loading=document.createElement("div");
+
+  loading.className="msg ai loading";
+
+  loading.textContent="JARVIS думает...";
+
+  $("chat").appendChild(loading);
+
+  $("chat").scrollTop=$("chat").scrollHeight;
+
+  try{
+
+    const memory=get("memory");
+
+    const tasks=get("tasks")
+      .filter(x=>!x.done)
+      .map(x=>x.text);
+
+    const systemInfo=
+      "Имя пользователя: "+
+      ($("userName").value || "Создатель")+
+      "\nПамять пользователя: "+
+      memory.map(x=>x.text).join("; ")+
+      "\nАктивные задачи: "+
+      tasks.join("; ")+
+      "\nДлина ответа: "+
+      $("length").value;
+
+    const response=await fetch(
+      WORKER_URL,
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          message:
+            systemInfo+
+            "\n\nСообщение пользователя:\n"+
+            q
+        })
+      }
+    );
+
+    const data=await response.json();
+
+    loading.remove();
+
+    if(!response.ok || data.error){
+
+      addMsg(
+        "Ошибка JARVIS: "+
+        (data.error || "неизвестная ошибка"),
+        "ai"
+      );
+
+      $("state").textContent="ERROR";
+
+      return;
+
+    }
+
+    addMsg(data.answer,"ai");
+
+    $("state").textContent="ANSWERING";
+
+    setTimeout(()=>{
+      $("state").textContent="SYSTEM READY";
+    },800);
+
+  }catch(error){
+
+    loading.remove();
+
+    addMsg(
+      "Не удалось подключиться к JARVIS.\n\n"+
+      error.message,
+      "ai"
+    );
+
+    $("state").textContent="OFFLINE";
+
+  }
 
 }
-
 
 function quick(t){
 
-$('q').value=t;
+  $("q").value=t;
 
-ask();
+  ask();
 
 }
-
 
 function addMsg(t,c){
 
-let d=document.createElement('div');
+  const d=document.createElement("div");
 
-d.className='msg '+c;
+  d.className="msg "+c;
 
-d.textContent=t;
+  d.textContent=t;
 
-$('chat').appendChild(d);
+  $("chat").appendChild(d);
 
-$('chat').scrollTop=$('chat').scrollHeight;
+  $("chat").scrollTop=
+    $("chat").scrollHeight;
 
 }
-
 
 function speak(){
 
-if(
-!('SpeechRecognition'in window||
-'webkitSpeechRecognition'in window)
-)
-return toast(
-'Голосовой ввод не поддерживается этим браузером.'
-);
+  const Recognition=
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
 
-let R=
-window.SpeechRecognition||
-window.webkitSpeechRecognition;
+  if(!Recognition){
 
-let r=new R();
+    toast(
+      "Голосовой ввод не поддерживается этим браузером."
+    );
 
-r.lang='ru-RU';
+    return;
 
-r.onstart=()=>{
-$('state').textContent='LISTENING';
-};
+  }
 
-r.onresult=e=>{
+  const r=new Recognition();
 
-$('q').value=
-e.results[0][0].transcript;
+  r.lang="ru-RU";
 
-ask();
+  r.continuous=false;
 
-};
+  r.interimResults=false;
 
-r.onend=()=>{
-$('state').textContent='SYSTEM READY';
-};
+  r.onstart=()=>{
 
-r.start();
+    $("state").textContent="LISTENING";
 
-}
+  };
 
+  r.onresult=e=>{
 
-function learn(mode){
+    $("q").value=
+      e.results[0][0].transcript;
 
-let s=$('subject').value;
+    ask();
 
-let t=$('topic').value.trim()||'выбранную тему';
+  };
 
-let out;
+  r.onerror=()=>{
 
-if(mode==='explain'){
+    $("state").textContent="SYSTEM READY";
 
-out=
-`Объяснение: ${s} — ${t}. На следующем этапе JARVIS разберёт тему простыми словами, примерами и шагами.`;
+  };
 
-}
+  r.onend=()=>{
 
-else if(mode==='test'){
+    if($("state").textContent==="LISTENING"){
+      $("state").textContent="SYSTEM READY";
+    }
 
-out=
-`Режим «Проверь меня»: ${s} — ${t}. Здесь появятся вопросы, таймер и проверка ответов.`;
+  };
+
+  r.start();
 
 }
 
-else{
+async function learn(mode){
 
-out=
-`Конспект: ${s} — ${t}. Здесь будет создан краткий структурированный конспект.`;
+  const subject=$("subject").value;
+
+  const topic=
+    $("topic").value.trim() ||
+    "выбранную тему";
+
+  let instruction="";
+
+  if(mode==="explain"){
+
+    instruction=
+      "Объясни тему "+topic+
+      " по предмету "+subject+
+      " простыми словами, как ученику. "+
+      "Добавь примеры и основные правила.";
+
+  }
+
+  if(mode==="test"){
+
+    instruction=
+      "Проведи небольшой тест по теме "+
+      topic+
+      " по предмету "+subject+
+      ". Задавай вопросы по одному и жди ответа пользователя.";
+
+  }
+
+  if(mode==="summary"){
+
+    instruction=
+      "Сделай понятный структурированный конспект "+
+      "по теме "+topic+
+      " по предмету "+subject+
+      ". Выдели главное и важные определения.";
+
+  }
+
+  $("learnOut").textContent=
+    "JARVIS готовит ответ...";
+
+  try{
+
+    const response=await fetch(
+      WORKER_URL,
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          message:instruction
+        })
+      }
+    );
+
+    const data=await response.json();
+
+    if(!response.ok || data.error){
+      throw new Error(
+        data.error || "Ошибка"
+      );
+    }
+
+    $("learnOut").textContent=data.answer;
+
+  }catch(error){
+
+    $("learnOut").textContent=
+      "Ошибка: "+error.message;
+
+  }
 
 }
-
-$('learnOut').textContent=out;
-
-}
-
 
 function saveSettings(){
 
-localStorage.setItem(
-'userName',
-$('userName').value
-);
+  localStorage.setItem(
+    "userName",
+    $("userName").value
+  );
 
-localStorage.setItem(
-'length',
-$('length').value
-);
+  localStorage.setItem(
+    "length",
+    $("length").value
+  );
 
 }
 
+function loadSettings(){
+
+  const name=
+    localStorage.getItem("userName");
+
+  const length=
+    localStorage.getItem("length");
+
+  if(name)
+    $("userName").value=name;
+
+  if(length)
+    $("length").value=length;
+
+}
 
 function clearAll(){
 
-if(confirm(
-'Удалить локальные данные JARVIS?'
-)){
+  if(confirm(
+    "Удалить локальные данные JARVIS?"
+  )){
 
-localStorage.clear();
+    localStorage.clear();
 
-location.reload();
+    location.reload();
+
+  }
 
 }
-
-}
-
 
 function esc(s){
 
-return String(s).replace(
-/[&<>"']/g,
-m=>({
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#39;'
-}[m])
-);
+  return String(s).replace(
+    /[&<>"']/g,
+    m=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[m])
+  );
 
 }
-
 
 function net(){
 
-let online=navigator.onLine;
+  const online=navigator.onLine;
 
-$('net').textContent=
-online?'ONLINE':'OFFLINE';
+  $("net").textContent=
+    online?"ONLINE":"OFFLINE";
 
-$('net2').textContent=
-online?'ONLINE':'OFFLINE';
+  $("net2").textContent=
+    online?"ONLINE":"OFFLINE";
 
-$('net2').className=
-online?'good':'';
+  $("net2").className=
+    online?"good":"";
 
-if(!online)
-$('state').textContent='OFFLINE MODE';
+  if(!online)
+    $("state").textContent="OFFLINE MODE";
 
 }
-
 
 function toast(t){
-alert(t);
+
+  alert(t);
+
 }
 
+$("q").addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Enter"){
+      e.preventDefault();
+      ask();
+    }
+  }
+);
 
-window.addEventListener('online',net);
+$("taskInput").addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Enter"){
+      e.preventDefault();
+      addTask();
+    }
+  }
+);
 
-window.addEventListener('offline',net);
+$("memInput").addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Enter"){
+      e.preventDefault();
+      addMemory();
+    }
+  }
+);
+
+window.addEventListener("online",net);
+window.addEventListener("offline",net);
 
 net();
 
+loadSettings();
+
 render();
 
-if('serviceWorker'in navigator)
-navigator.serviceWorker.register('sw.js').catch(()=>{});
+if("serviceWorker" in navigator){
+
+  navigator.serviceWorker
+    .register("sw.js")
+    .catch(()=>{});
+
+}
 
 </script>
 
