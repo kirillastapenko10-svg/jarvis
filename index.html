@@ -15,43 +15,57 @@
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
   color:#eaf8ff;
   background:#04080b;
+  --cyan:#38d9ff;
+  --green:#38e69a;
+  --panel:#071016;
+  --border:#19303a;
 }
 *{box-sizing:border-box}
+
 body{
   margin:0;
   min-height:100vh;
-  background:radial-gradient(circle at 50% 0,#0b2029 0,#04080b 45%);
+  background:
+    radial-gradient(circle at 50% 0,#0b2029 0,#04080b 45%);
 }
+
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
+
 .app{
   max-width:760px;
   margin:auto;
   min-height:100vh;
   padding:env(safe-area-inset-top) 14px calc(90px + env(safe-area-inset-bottom));
 }
+
 header{
   height:62px;
   display:flex;
   align-items:center;
   gap:9px;
 }
+
 .dot{
   width:9px;
   height:9px;
   border-radius:50%;
-  background:#36ff9b;
-  box-shadow:0 0 15px #36ff9b;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
 }
+
 .brand{
   font-weight:800;
   letter-spacing:3px;
 }
+
 .online{
   font-size:11px;
   color:#6dffb0;
 }
+
 .grow{flex:1}
+
 .iconbtn,.btn{
   border:1px solid #20353e;
   background:#0b1419;
@@ -59,15 +73,27 @@ header{
   border-radius:13px;
   padding:10px 13px;
 }
+
 .btn.primary{
-  background:#38e69a;
+  background:var(--green);
   color:#03110b;
-  border-color:#38e69a;
+  border-color:var(--green);
   font-weight:700;
 }
+
+.btn.danger{
+  border-color:#6b3030;
+  color:#ff9696;
+}
+
 .screen{display:none}
 .screen.active{display:block}
-.hero{text-align:center;padding:12px 0 18px}
+
+.hero{
+  text-align:center;
+  padding:12px 0 18px;
+}
+
 .core{
   width:150px;
   height:150px;
@@ -75,65 +101,92 @@ header{
   margin:8px auto 16px;
   display:grid;
   place-items:center;
-  border:1px solid #38d9ff;
-  box-shadow:0 0 18px #0aa0c0,inset 0 0 35px #062e3a;
+  border:1px solid var(--cyan);
+  box-shadow:
+    0 0 18px #0aa0c0,
+    inset 0 0 35px #062e3a;
   position:relative;
-  background:radial-gradient(circle,#163b48 0,#07141a 45%,#03070a 70%);
+  background:
+    radial-gradient(circle,#163b48 0,#07141a 45%,#03070a 70%);
   animation:pulse 3s infinite;
 }
-.core:before,.core:after{
+
+.core:before,
+.core:after{
   content:"";
   position:absolute;
   border:1px solid #29b9dd;
   border-radius:50%;
 }
+
 .core:before{inset:14px}
+
 .core:after{
   inset:31px;
   border-style:dashed;
   animation:spin 8s linear infinite;
 }
+
 .core span{
   font-weight:800;
   letter-spacing:2px;
 }
+
 .state{
   font-size:12px;
   color:#7da7b5;
   letter-spacing:1px;
 }
+
 .welcome{
   font-size:16px;
   margin-top:8px;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
 }
+
 .tile{
-  border:1px solid #19303a;
+  border:1px solid var(--border);
   background:linear-gradient(145deg,#0a141a,#071016);
   border-radius:18px;
   padding:15px;
   text-align:left;
   color:#eaf8ff;
 }
-.tile b{display:block;margin:6px 0 3px}
-.tile small{color:#76939f}
+
+.tile:active{
+  transform:scale(.98);
+}
+
+.tile b{
+  display:block;
+  margin:6px 0 3px;
+}
+
+.tile small{
+  color:#76939f;
+}
+
 .panel{
-  border:1px solid #19303a;
-  background:#071016;
+  border:1px solid var(--border);
+  background:var(--panel);
   border-radius:20px;
   padding:15px;
   margin:10px 0;
 }
+
 .row{
   display:flex;
   gap:8px;
   align-items:center;
 }
+
 .row>*{min-width:0}
+
 .stat{
   display:flex;
   justify-content:space-between;
@@ -141,7 +194,13 @@ header{
   border-bottom:1px solid #13262e;
   color:#91aab4;
 }
+
+.stat:last-child{
+  border-bottom:0;
+}
+
 .good{color:#5cffaa}
+
 .input{
   width:100%;
   background:#091218;
@@ -151,10 +210,17 @@ header{
   padding:12px;
   outline:none;
 }
+
 .input:focus{
-  border-color:#38d9ff;
+  border-color:var(--cyan);
   box-shadow:0 0 12px #083c4a;
 }
+
+textarea.input{
+  min-height:90px;
+  resize:vertical;
+}
+
 .chat{
   display:flex;
   flex-direction:column;
@@ -162,6 +228,7 @@ header{
   max-height:55vh;
   overflow:auto;
 }
+
 .msg{
   max-width:88%;
   padding:11px 13px;
@@ -169,36 +236,50 @@ header{
   white-space:pre-wrap;
   word-break:break-word;
 }
+
 .ai{
   background:#0b171d;
   border:1px solid #1a323c;
   align-self:flex-start;
 }
+
 .me{
   background:#103447;
   align-self:flex-end;
 }
+
 .composer{
   display:flex;
   gap:8px;
   margin-top:10px;
 }
+
 .composer .input{flex:1}
+
 .list{
   display:flex;
   flex-direction:column;
   gap:8px;
 }
+
 .item{
   padding:12px;
   border:1px solid #1a313b;
   background:#091319;
   border-radius:14px;
 }
+
 .item.done{
   opacity:.5;
   text-decoration:line-through;
 }
+
+.item-actions{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+}
+
 .nav{
   position:fixed;
   bottom:0;
@@ -214,6 +295,7 @@ header{
   border-top:1px solid #172b33;
   z-index:4;
 }
+
 .nav button{
   flex:0 0 auto;
   min-width:68px;
@@ -224,10 +306,12 @@ header{
   border-radius:12px;
   font-size:11px;
 }
+
 .nav button.active{
   background:#10232b;
   color:#56ffac;
 }
+
 .upload{
   display:block;
   border:1px dashed #28505c;
@@ -237,17 +321,22 @@ header{
   color:#8aa7b2;
   cursor:pointer;
 }
+
 .preview{
   max-width:100%;
+  max-height:350px;
   border-radius:15px;
   margin-top:10px;
   display:none;
+  object-fit:contain;
 }
+
 .chips{
   display:flex;
   gap:7px;
   flex-wrap:wrap;
 }
+
 .chip{
   background:#0c1b21;
   border:1px solid #1e3a45;
@@ -256,30 +345,80 @@ header{
   font-size:12px;
   color:#dff7ff;
 }
+
 .small{
   font-size:12px;
   color:#718c97;
   line-height:1.45;
 }
+
 .loading{
   opacity:.7;
   animation:blink 1s infinite;
 }
+
 .error{
   color:#ff8d8d;
 }
+
+.empty{
+  text-align:center;
+  padding:20px;
+  color:#718c97;
+}
+
+.hud{
+  position:relative;
+  overflow:hidden;
+}
+
+.hud:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(
+      transparent 49%,
+      rgba(56,217,255,.035) 50%,
+      transparent 51%
+    );
+  background-size:100% 8px;
+}
+
+.command-result{
+  border-left:2px solid var(--green);
+  padding-left:10px;
+  margin-top:10px;
+}
+
+.badge{
+  display:inline-block;
+  font-size:10px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#0c242c;
+  color:#66ddff;
+  margin-left:5px;
+}
+
 @keyframes pulse{
   50%{
     transform:scale(1.04);
-    box-shadow:0 0 35px #0aa0c0,inset 0 0 45px #073b49;
+    box-shadow:
+      0 0 35px #0aa0c0,
+      inset 0 0 45px #073b49;
   }
 }
+
 @keyframes spin{
   to{transform:rotate(360deg)}
 }
+
 @keyframes blink{
   50%{opacity:.35}
 }
+
 @media(min-width:650px){
   .grid{grid-template-columns:repeat(3,1fr)}
 }
@@ -302,19 +441,19 @@ header{
 
 <div class="hero">
 
-<div class="core">
+<div class="core" id="mainCore">
 <span>JARVIS</span>
 </div>
 
 <div class="state" id="state">SYSTEM READY</div>
 
-<div class="welcome">
+<div class="welcome" id="welcome">
 Добрый день, Создатель. Я готов.
 </div>
 
 </div>
 
-<div class="panel">
+<div class="panel hud">
 
 <div class="stat">
 <span>AI</span>
@@ -345,18 +484,63 @@ header{
 
 <div class="grid">
 
-<button class="tile" onclick="go('jarvis')">🎙️<b>JARVIS</b><small>Чат и команды</small></button>
-<button class="tile" onclick="go('vision')">👁️<b>VISION</b><small>Фото и анализ</small></button>
-<button class="tile" onclick="go('archive')">🧊<b>3D ARCHIVE</b><small>Объекты</small></button>
-<button class="tile" onclick="go('memory')">🧠<b>MEMORY</b><small>Память</small></button>
-<button class="tile" onclick="go('learn')">📚<b>LEARN</b><small>Учёба</small></button>
-<button class="tile" onclick="go('tasks')">⏰<b>TASKS</b><small>Задачи</small></button>
-<button class="tile" onclick="go('projects')">📁<b>PROJECTS</b><small>Проекты</small></button>
-<button class="tile" onclick="go('knowledge')">🌐<b>KNOWLEDGE</b><small>Знания</small></button>
-<button class="tile" onclick="go('system')">⚙️<b>SYSTEM</b><small>Настройки</small></button>
+<button class="tile" onclick="go('jarvis')">
+🎙️
+<b>JARVIS</b>
+<small>Чат, голос и команды</small>
+</button>
+
+<button class="tile" onclick="go('vision')">
+👁️
+<b>VISION</b>
+<small>Фото и анализ Gemini</small>
+</button>
+
+<button class="tile" onclick="go('archive')">
+🧊
+<b>3D ARCHIVE</b>
+<small>Объекты</small>
+</button>
+
+<button class="tile" onclick="go('memory')">
+🧠
+<b>MEMORY</b>
+<small>Память JARVIS</small>
+</button>
+
+<button class="tile" onclick="go('learn')">
+📚
+<b>LEARN</b>
+<small>Учёба с ИИ</small>
+</button>
+
+<button class="tile" onclick="go('tasks')">
+⏰
+<b>TASKS</b>
+<small>Задачи</small>
+</button>
+
+<button class="tile" onclick="go('projects')">
+📁
+<b>PROJECTS</b>
+<small>Проекты</small>
+</button>
+
+<button class="tile" onclick="go('knowledge')">
+🌐
+<b>KNOWLEDGE</b>
+<small>Материалы</small>
+</button>
+
+<button class="tile" onclick="go('system')">
+⚙️
+<b>SYSTEM</b>
+<small>Настройки</small>
+</button>
 
 </div>
 </section>
+
 
 <section id="jarvis" class="screen">
 
@@ -374,7 +558,12 @@ header{
 
 <div class="composer">
 
-<input id="q" class="input" placeholder="Джарвис, ..." autocomplete="off">
+<input
+id="q"
+class="input"
+placeholder="Джарвис, ..."
+autocomplete="off"
+>
 
 <button class="btn primary" onclick="ask()">➤</button>
 
@@ -386,13 +575,47 @@ header{
 
 <div class="chips">
 
-<button class="chip" onclick="quick('Статус системы')">Статус системы</button>
-<button class="chip" onclick="quick('Что ты умеешь?')">Что ты умеешь?</button>
-<button class="chip" onclick="quick('Запомни, что я люблю JARVIS')">Запомни это</button>
+<button class="chip" onclick="quick('Статус системы')">
+Статус системы
+</button>
+
+<button class="chip" onclick="quick('Что ты умеешь?')">
+Что ты умеешь?
+</button>
+
+<button class="chip" onclick="quick('Что ты помнишь обо мне?')">
+Что ты помнишь?
+</button>
+
+<button class="chip" onclick="quick('Какие у меня задачи?')">
+Мои задачи
+</button>
+
+<button class="chip" onclick="quick('Запомни, что я люблю JARVIS')">
+Запомни это
+</button>
+
+</div>
+
+<div class="panel">
+
+<div class="small">
+Команды JARVIS:
+</div>
+
+<div class="chips" style="margin-top:8px">
+
+<span class="chip">Запомни, что...</span>
+<span class="chip">Создай задачу...</span>
+<span class="chip">Создай проект...</span>
+<span class="chip">Удали память...</span>
+
+</div>
 
 </div>
 
 </section>
+
 
 <section id="vision" class="screen">
 
@@ -401,16 +624,37 @@ header{
 <div class="panel">
 
 <label class="upload">
+
 📷 Сделать или загрузить фото
-<input id="photo" type="file" accept="image/*" capture="environment" hidden onchange="showPhoto(this)">
+
+<input
+id="photo"
+type="file"
+accept="image/*"
+capture="environment"
+hidden
+onchange="showPhoto(this)"
+>
+
 </label>
 
 <img id="preview" class="preview">
 
 <div class="row" style="margin-top:10px">
 
-<button class="btn primary" onclick="analyzePhoto()">Анализировать</button>
-<button class="btn" onclick="clearPhoto()">Очистить</button>
+<button
+class="btn primary"
+onclick="analyzePhoto()"
+>
+Анализировать
+</button>
+
+<button
+class="btn"
+onclick="clearPhoto()"
+>
+Очистить
+</button>
 
 </div>
 
@@ -422,6 +666,7 @@ header{
 
 </section>
 
+
 <section id="archive" class="screen">
 
 <h2>🧊 3D ARCHIVE</h2>
@@ -432,15 +677,21 @@ header{
 <span>3D</span>
 </div>
 
-<button class="btn primary" onclick="toast('3D-сканер подготовлен для отдельного модуля.')">
+<button
+class="btn primary"
+onclick="toast('3D-сканер подготовлен для отдельного модуля.')"
+>
 📷 Сканировать объект
 </button>
 
-<p class="small">Архив объектов и моделей.</p>
+<p class="small">
+Архив объектов и моделей. Реальный 3D-сканер можно подключить отдельным модулем.
+</p>
 
 </div>
 
 </section>
+
 
 <section id="memory" class="screen">
 
@@ -450,21 +701,38 @@ header{
 
 <div class="row">
 
-<input id="memInput" class="input" placeholder="Что запомнить?">
+<input
+id="memInput"
+class="input"
+placeholder="Что запомнить?"
+>
 
-<button class="btn primary" onclick="addMemory()">+</button>
+<button
+class="btn primary"
+onclick="addMemory()"
+>
++
+</button>
 
 </div>
 
-<p class="small">Память хранится локально на устройстве.</p>
+<p class="small">
+Память хранится локально на устройстве.
+</p>
 
 </div>
 
 <div id="memoryList" class="list"></div>
 
-<button class="btn" onclick="clearMemory()">Очистить память</button>
+<button
+class="btn danger"
+onclick="clearMemory()"
+>
+Очистить память
+</button>
 
 </section>
+
 
 <section id="learn" class="screen">
 
@@ -473,21 +741,45 @@ header{
 <div class="panel">
 
 <select id="subject" class="input">
+
 <option>Математика</option>
 <option>Физика</option>
 <option>История</option>
 <option>География</option>
 <option>Русский язык</option>
 <option>Информатика</option>
+
 </select>
 
-<input id="topic" class="input" style="margin-top:8px" placeholder="Тема">
+<input
+id="topic"
+class="input"
+style="margin-top:8px"
+placeholder="Тема"
+>
 
 <div class="row" style="margin-top:8px">
 
-<button class="btn primary" onclick="learn('explain')">Объяснить</button>
-<button class="btn" onclick="learn('test')">Тест</button>
-<button class="btn" onclick="learn('summary')">Конспект</button>
+<button
+class="btn primary"
+onclick="learn('explain')"
+>
+Объяснить
+</button>
+
+<button
+class="btn"
+onclick="learn('test')"
+>
+Тест
+</button>
+
+<button
+class="btn"
+onclick="learn('summary')"
+>
+Конспект
+</button>
 
 </div>
 
@@ -499,6 +791,7 @@ header{
 
 </section>
 
+
 <section id="tasks" class="screen">
 
 <h2>⏰ TASKS</h2>
@@ -507,9 +800,18 @@ header{
 
 <div class="row">
 
-<input id="taskInput" class="input" placeholder="Новая задача">
+<input
+id="taskInput"
+class="input"
+placeholder="Новая задача"
+>
 
-<button class="btn primary" onclick="addTask()">+</button>
+<button
+class="btn primary"
+onclick="addTask()"
+>
++
+</button>
 
 </div>
 
@@ -519,15 +821,24 @@ header{
 
 </section>
 
+
 <section id="projects" class="screen">
 
 <h2>📁 PROJECTS</h2>
 
 <div class="panel">
 
-<input id="projectInput" class="input" placeholder="Название проекта">
+<input
+id="projectInput"
+class="input"
+placeholder="Название проекта"
+>
 
-<button class="btn primary" style="margin-top:8px" onclick="addProject()">
+<button
+class="btn primary"
+style="margin-top:8px"
+onclick="addProject()"
+>
 Создать проект
 </button>
 
@@ -537,6 +848,7 @@ header{
 
 </section>
 
+
 <section id="knowledge" class="screen">
 
 <h2>🌐 KNOWLEDGE</h2>
@@ -544,15 +856,30 @@ header{
 <div class="panel">
 
 <label class="upload">
+
 📄 Добавить материал
-<input id="docs" type="file" multiple accept=".txt,.md" hidden onchange="addDocs(this)">
+
+<input
+id="docs"
+type="file"
+multiple
+accept=".txt,.md"
+hidden
+onchange="addDocs(this)"
+>
+
 </label>
 
-<div id="docList" class="list" style="margin-top:10px"></div>
+<div
+id="docList"
+class="list"
+style="margin-top:10px"
+></div>
 
 </div>
 
 </section>
+
 
 <section id="system" class="screen">
 
@@ -560,9 +887,16 @@ header{
 
 <div class="panel">
 
-<label class="small">Имя пользователя</label>
+<label class="small">
+Имя пользователя
+</label>
 
-<input id="userName" class="input" value="Создатель" onchange="saveSettings()">
+<input
+id="userName"
+class="input"
+value="Создатель"
+onchange="saveSettings()"
+>
 
 <div class="stat">
 <span>Соединение</span>
@@ -574,84 +908,158 @@ header{
 <b id="workerStatus" class="good">READY</b>
 </div>
 
+<div class="stat">
+<span>Модель</span>
+<b>Gemini</b>
+</div>
+
 <div style="margin-top:12px">
 
-<label class="small">Длина ответа</label>
+<label class="small">
+Длина ответа
+</label>
 
-<select id="length" class="input" onchange="saveSettings()">
+<select
+id="length"
+class="input"
+onchange="saveSettings()"
+>
+
 <option>Коротко</option>
 <option>Средне</option>
 <option>Подробно</option>
+
 </select>
 
 </div>
 
+<div style="margin-top:12px">
+
+<button
+class="btn"
+onclick="testWorker()"
+>
+Проверить соединение
+</button>
+
+<button
+class="btn"
+style="margin-left:5px"
+onclick="clearChat()"
+>
+Очистить чат
+</button>
+
 </div>
 
-<button class="btn" onclick="clearAll()">Очистить локальные данные</button>
+</div>
 
-<p class="small">JARVIS v3.0</p>
+<button
+class="btn danger"
+onclick="clearAll()"
+>
+Очистить локальные данные
+</button>
+
+<p class="small">
+JARVIS v4.0
+</p>
 
 </section>
 
 </div>
 
+
 <nav class="nav">
 
-<button onclick="go('home')">🏠<br>Главная</button>
-<button onclick="go('jarvis')">🎙️<br>JARVIS</button>
-<button onclick="go('vision')">👁️<br>Vision</button>
-<button onclick="go('archive')">🧊<br>3D</button>
-<button onclick="go('memory')">🧠<br>Memory</button>
-<button onclick="go('learn')">📚<br>Learn</button>
-<button onclick="go('tasks')">⏰<br>Tasks</button>
-<button onclick="go('projects')">📁<br>Projects</button>
-<button onclick="go('knowledge')">🌐<br>Knowledge</button>
+<button onclick="go('home')">
+🏠<br>Главная
+</button>
+
+<button onclick="go('jarvis')">
+🎙️<br>JARVIS
+</button>
+
+<button onclick="go('vision')">
+👁️<br>Vision
+</button>
+
+<button onclick="go('archive')">
+🧊<br>3D
+</button>
+
+<button onclick="go('memory')">
+🧠<br>Memory
+</button>
+
+<button onclick="go('learn')">
+📚<br>Learn
+</button>
+
+<button onclick="go('tasks')">
+⏰<br>Tasks
+</button>
+
+<button onclick="go('projects')">
+📁<br>Projects
+</button>
+
+<button onclick="go('knowledge')">
+🌐<br>Knowledge
+</button>
 
 </nav>
 
-<script>
 
-/* =========================
-   JARVIS CONNECTION
-========================= */
+<script>
 
 const WORKER_URL =
 "https://steep-night-9bc8.kirill-astapenko10.workers.dev";
 
 
-/* =========================
-   STORAGE
-========================= */
+const $ = id =>
+document.getElementById(id);
 
-const $ = id => document.getElementById(id);
 
-function get(key, fallback = []) {
+function get(key,fallback=[]){
 
-  try {
-    return JSON.parse(
-      localStorage.getItem(key) ||
-      JSON.stringify(fallback)
-    );
-  }
+  try{
 
-  catch {
+    const value =
+      localStorage.getItem(key);
+
+    return value === null
+      ? fallback
+      : JSON.parse(value);
+
+  }catch{
+
     return fallback;
+
   }
+
 }
 
-function set(key, value) {
+
+function set(key,value){
+
   localStorage.setItem(
     key,
     JSON.stringify(value)
   );
+
 }
 
-/* =========================
-   NAVIGATION
-========================= */
 
-function go(id) {
+function setState(text){
+
+  $("state").textContent =
+    text;
+
+}
+
+
+function go(id){
 
   document
     .querySelectorAll(".screen")
@@ -659,21 +1067,20 @@ function go(id) {
       x.classList.remove("active")
     );
 
-  const screen = $(id);
+  const screen =
+    $(id);
 
-  if (screen)
+  if(screen)
     screen.classList.add("active");
 
   window.scrollTo(0,0);
 
   render();
+
 }
 
-/* =========================
-   CHAT
-========================= */
 
-function addMsg(text, type) {
+function addMsg(text,type){
 
   const div =
     document.createElement("div");
@@ -681,18 +1088,21 @@ function addMsg(text, type) {
   div.className =
     "msg " + type;
 
-  div.textContent = text;
+  div.textContent =
+    text;
 
   $("chat").appendChild(div);
 
   $("chat").scrollTop =
     $("chat").scrollHeight;
+
 }
 
-function saveChat(role, content) {
+
+function saveChat(role,content){
 
   const history =
-    get("chatHistory", []);
+    get("chatHistory",[]);
 
   history.push({
     role,
@@ -701,16 +1111,23 @@ function saveChat(role, content) {
 
   set(
     "chatHistory",
-    history.slice(-30)
+    history.slice(-40)
   );
+
 }
 
-function restoreChat() {
+
+function restoreChat(){
 
   const history =
-    get("chatHistory", []);
+    get("chatHistory",[]);
 
-  for (const item of history) {
+  if(!history.length)
+    return;
+
+  $("chat").innerHTML = "";
+
+  for(const item of history){
 
     addMsg(
       item.content,
@@ -718,10 +1135,249 @@ function restoreChat() {
         ? "me"
         : "ai"
     );
+
   }
+
 }
 
-async function ask() {
+
+function clearChat(){
+
+  if(!confirm("Очистить историю чата?"))
+    return;
+
+  localStorage.removeItem(
+    "chatHistory"
+  );
+
+  $("chat").innerHTML =
+    `<div class="msg ai">
+      История очищена. Создатель, я снова готов.
+    </div>`;
+
+}
+
+
+function detectCommand(question){
+
+  const q =
+    question.toLowerCase();
+
+  if(
+    q.startsWith("запомни") ||
+    q.startsWith("запомни,")
+  ){
+
+    const text =
+      question
+        .replace(/^запомни[, ]*/i,"")
+        .trim();
+
+    if(text){
+
+      const memory =
+        get("memory",[]);
+
+      memory.push({
+        text,
+        date:new Date()
+          .toLocaleString("ru-RU")
+      });
+
+      set(
+        "memory",
+        memory
+      );
+
+      renderMemory();
+
+      return {
+        handled:true,
+        answer:
+          "Запомнил, Создатель."
+      };
+
+    }
+
+  }
+
+
+  if(
+    q.startsWith("создай задачу") ||
+    q.startsWith("добавь задачу")
+  ){
+
+    const text =
+      question
+        .replace(
+          /^(создай|добавь)\s+задачу[:, ]*/i,
+          ""
+        )
+        .trim();
+
+    if(text){
+
+      const tasks =
+        get("tasks",[]);
+
+      tasks.push({
+        text,
+        done:false,
+        date:new Date()
+          .toLocaleString("ru-RU")
+      });
+
+      set(
+        "tasks",
+        tasks
+      );
+
+      renderTasks();
+      updateStats();
+
+      return {
+        handled:true,
+        answer:
+          `Задача создана: ${text}`
+      };
+
+    }
+
+  }
+
+
+  if(
+    q.startsWith("создай проект")
+  ){
+
+    const name =
+      question
+        .replace(
+          /^создай проект[:, ]*/i,
+          ""
+        )
+        .trim();
+
+    if(name){
+
+      const projects =
+        get("projects",[]);
+
+      projects.push({
+        name,
+        date:new Date()
+          .toLocaleDateString("ru-RU")
+      });
+
+      set(
+        "projects",
+        projects
+      );
+
+      renderProjects();
+      updateStats();
+
+      return {
+        handled:true,
+        answer:
+          `Проект «${name}» создан.`
+      };
+
+    }
+
+  }
+
+
+  if(
+    q.includes("что ты помнишь")
+  ){
+
+    const memory =
+      get("memory",[]);
+
+    if(!memory.length){
+
+      return {
+        handled:true,
+        answer:
+          "Память пока пуста, Создатель."
+      };
+
+    }
+
+    return {
+      handled:true,
+      answer:
+        "Я помню:\n\n" +
+        memory
+          .map((x,i)=>
+            `${i+1}. ${x.text}`
+          )
+          .join("\n")
+    };
+
+  }
+
+
+  if(
+    q.includes("мои задачи") ||
+    q.includes("какие у меня задачи")
+  ){
+
+    const tasks =
+      get("tasks",[])
+        .filter(x=>!x.done);
+
+    if(!tasks.length){
+
+      return {
+        handled:true,
+        answer:
+          "Активных задач нет."
+      };
+
+    }
+
+    return {
+      handled:true,
+      answer:
+        "Активные задачи:\n\n" +
+        tasks
+          .map((x,i)=>
+            `${i+1}. ${x.text}`
+          )
+          .join("\n")
+    };
+
+  }
+
+
+  if(
+    q === "статус системы"
+  ){
+
+    return {
+      handled:true,
+      answer:
+        "Система JARVIS работает.\n\n" +
+        "AI: ONLINE\n" +
+        "MEMORY: ACTIVE\n" +
+        "VISION: READY\n" +
+        `Задач: ${get("tasks",[]).filter(x=>!x.done).length}\n` +
+        `Проектов: ${get("projects",[]).length}`
+    };
+
+  }
+
+
+  return {
+    handled:false
+  };
+
+}
+
+
+async function ask(){
 
   const input =
     $("q");
@@ -729,10 +1385,14 @@ async function ask() {
   const question =
     input.value.trim();
 
-  if (!question)
+  if(!question)
     return;
 
-  addMsg(question, "me");
+
+  addMsg(
+    question,
+    "me"
+  );
 
   saveChat(
     "user",
@@ -741,8 +1401,33 @@ async function ask() {
 
   input.value = "";
 
-  $("state").textContent =
-    "THINKING";
+
+  const command =
+    detectCommand(question);
+
+  if(command.handled){
+
+    addMsg(
+      command.answer,
+      "ai"
+    );
+
+    saveChat(
+      "assistant",
+      command.answer
+    );
+
+    speakText(
+      command.answer
+    );
+
+    return;
+
+  }
+
+
+  setState("THINKING");
+
 
   const loading =
     document.createElement("div");
@@ -757,21 +1442,20 @@ async function ask() {
     loading
   );
 
-  $("chat").scrollTop =
-    $("chat").scrollHeight;
 
-  try {
+  try{
 
     const history =
-      get("chatHistory", []);
+      get("chatHistory",[]);
 
     const memory =
-      get("memory", []);
+      get("memory",[]);
 
     const tasks =
-      get("tasks", [])
-      .filter(x => !x.done)
-      .map(x => x.text);
+      get("tasks",[])
+        .filter(x=>!x.done)
+        .map(x=>x.text);
+
 
     const response =
       await fetch(
@@ -800,53 +1484,64 @@ async function ask() {
             history:
               history.slice(-20),
 
-            memory:
-              memory,
-
-            tasks:
-              tasks
+            memory,
+            tasks
 
           })
+
         }
       );
+
 
     const raw =
       await response.text();
 
+
     let data;
 
-    try {
+    try{
+
       data =
         JSON.parse(raw);
-    }
 
-    catch {
+    }catch{
+
       throw new Error(
-        "Worker вернул:\n" +
+        "Worker вернул некорректный ответ:\n" +
         raw
       );
+
     }
+
 
     loading.remove();
 
-    if (!response.ok ||
-        data.ok === false) {
+
+    if(!response.ok ||
+       data.ok === false){
 
       throw new Error(
         data.error ||
         "Ошибка JARVIS"
       );
+
     }
 
-    const answer =
-      data.answer;
 
-    if (!answer) {
+    const answer =
+      data.answer ||
+      data.reply ||
+      data.text;
+
+
+    if(!answer){
 
       throw new Error(
         "ИИ не вернул ответ."
       );
+
     }
+
 
     addMsg(
       answer,
@@ -858,22 +1553,34 @@ async function ask() {
       answer
     );
 
-    $("state").textContent =
-      "ANSWERING";
 
-    $("workerStatus").textContent =
+    setState(
+      "ANSWERING"
+    );
+
+
+    $("workerStatus")
+      .textContent =
       "ONLINE";
 
-    setTimeout(() => {
+    $("aiStatus")
+      .textContent =
+      "READY";
 
-      $("state").textContent =
-        "SYSTEM READY";
 
-    },1000);
+    speakText(answer);
 
-  }
 
-  catch(error) {
+    setTimeout(
+      () =>
+        setState(
+          "SYSTEM READY"
+        ),
+      1200
+    );
+
+
+  }catch(error){
 
     loading.remove();
 
@@ -883,43 +1590,52 @@ async function ask() {
       "ai"
     );
 
-    $("state").textContent =
+    setState("ERROR");
+
+    $("workerStatus")
+      .textContent =
       "ERROR";
 
-    $("workerStatus").textContent =
+    $("aiStatus")
+      .textContent =
       "ERROR";
+
   }
+
 }
 
-function quick(text) {
+
+function quick(text){
 
   $("q").value =
     text;
 
   ask();
+
 }
 
-/* =========================
-   VOICE
-========================= */
 
-function speak() {
+function speak(){
 
   const Recognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
-  if (!Recognition) {
+
+  if(!Recognition){
 
     toast(
-      "Голосовой ввод не поддерживается."
+      "Голосовой ввод не поддерживается этим браузером."
     );
 
     return;
+
   }
+
 
   const recognition =
     new Recognition();
+
 
   recognition.lang =
     "ru-RU";
@@ -930,11 +1646,13 @@ function speak() {
   recognition.interimResults =
     false;
 
+
   recognition.onstart =
-    () => {
-      $("state").textContent =
-        "LISTENING";
-    };
+    () =>
+      setState(
+        "LISTENING"
+      );
+
 
   recognition.onresult =
     event => {
@@ -944,32 +1662,93 @@ function speak() {
           .transcript;
 
       ask();
+
     };
+
 
   recognition.onerror =
+    () =>
+      setState(
+        "SYSTEM READY"
+      );
+
+
+  recognition.onend =
     () => {
 
-      $("state").textContent =
-        "SYSTEM READY";
+      if(
+        $("state").textContent ===
+        "LISTENING"
+      ){
+
+        setState(
+          "SYSTEM READY"
+        );
+
+      }
+
     };
 
+
   recognition.start();
+
 }
 
-/* =========================
-   VISION
-========================= */
 
-function showPhoto(input) {
+function speakText(text){
+
+  if(
+    !window.speechSynthesis
+  )
+    return;
+
+
+  if(
+    localStorage.getItem(
+      "voiceEnabled"
+    ) === "false"
+  )
+    return;
+
+
+  window.speechSynthesis.cancel();
+
+
+  const utterance =
+    new SpeechSynthesisUtterance(
+      text
+    );
+
+
+  utterance.lang =
+    "ru-RU";
+
+  utterance.rate =
+    1;
+
+  utterance.pitch =
+    .9;
+
+
+  window.speechSynthesis.speak(
+    utterance
+  );
+
+}
+
+
+function showPhoto(input){
 
   const file =
     input.files[0];
 
-  if (!file)
+  if(!file)
     return;
+
 
   const reader =
     new FileReader();
+
 
   reader.onload =
     event => {
@@ -977,48 +1756,67 @@ function showPhoto(input) {
       $("preview").src =
         event.target.result;
 
-      $("preview").style.display =
+      $("preview")
+        .style.display =
         "block";
 
-      $("visionText").textContent =
+      $("visionText")
+        .textContent =
         "Фото готово к анализу.";
+
     };
 
+
   reader.readAsDataURL(file);
+
 }
 
-function clearPhoto() {
+
+function clearPhoto(){
+
+  $("photo").value = "";
 
   $("preview").src = "";
 
-  $("preview").style.display =
+  $("preview")
+    .style.display =
     "none";
 
-  $("visionText").textContent =
+  $("visionText")
+    .textContent =
     "Загрузи изображение.";
+
 }
 
-async function analyzePhoto() {
+
+async function analyzePhoto(){
 
   const image =
     $("preview").src;
 
-  if (!image) {
+
+  if(!image){
 
     toast(
       "Сначала загрузи фото."
     );
 
     return;
+
   }
 
-  $("state").textContent =
-    "ANALYZING";
 
-  $("visionText").textContent =
-    "JARVIS анализирует фото...";
+  setState(
+    "ANALYZING"
+  );
 
-  try {
+
+  $("visionText")
+    .textContent =
+    "JARVIS анализирует изображение...";
+
+
+  try{
 
     const response =
       await fetch(
@@ -1033,704 +1831,7 @@ async function analyzePhoto() {
 
           body:JSON.stringify({
 
-            image:image,
+            image,
 
             prompt:
-              "Проанализируй это изображение. Опиши основные объекты, текст и важные детали. Если есть текст, прочитай его."
-
-          })
-        }
-      );
-
-    const data =
-      await response.json();
-
-    if (!response.ok ||
-        data.ok === false) {
-
-      throw new Error(
-        data.error ||
-        "Ошибка Vision"
-      );
-    }
-
-    $("visionText").textContent =
-      data.answer;
-
-  }
-
-  catch(error) {
-
-    $("visionText").textContent =
-      "Ошибка Vision:\n" +
-      error.message;
-  }
-
-  $("state").textContent =
-    "SYSTEM READY";
-}
-
-/* =========================
-   MEMORY
-========================= */
-
-function addMemory() {
-
-  const input =
-    $("memInput");
-
-  const text =
-    input.value.trim();
-
-  if (!text)
-    return;
-
-  const memory =
-    get("memory");
-
-  memory.push({
-
-    text,
-
-    date:
-      new Date()
-        .toLocaleString(
-          "ru-RU"
-        )
-  });
-
-  set(
-    "memory",
-    memory
-  );
-
-  input.value = "";
-
-  renderMemory();
-}
-
-function renderMemory() {
-
-  const memory =
-    get("memory");
-
-  $("memoryList").innerHTML =
-    memory.map(
-      (item,index) => `
-
-      <div class="item">
-
-        🧠 ${esc(item.text)}
-
-        <div class="small">
-
-          ${esc(item.date)}
-
-          <button
-            class="btn"
-            onclick="deleteMemory(${index})"
-          >
-            Удалить
-          </button>
-
-        </div>
-
-      </div>
-
-      `
-    ).join("")
-    ||
-    '<p class="small">Память пуста.</p>';
-}
-
-function deleteMemory(index) {
-
-  const memory =
-    get("memory");
-
-  memory.splice(
-    index,
-    1
-  );
-
-  set(
-    "memory",
-    memory
-  );
-
-  renderMemory();
-}
-
-function clearMemory() {
-
-  localStorage.removeItem(
-    "memory"
-  );
-
-  renderMemory();
-}
-
-/* =========================
-   TASKS
-========================= */
-
-function addTask() {
-
-  const input =
-    $("taskInput");
-
-  const text =
-    input.value.trim();
-
-  if (!text)
-    return;
-
-  const tasks =
-    get("tasks");
-
-  tasks.push({
-    text,
-    done:false
-  });
-
-  set(
-    "tasks",
-    tasks
-  );
-
-  input.value = "";
-
-  renderTasks();
-  updateStats();
-}
-
-function toggleTask(index) {
-
-  const tasks =
-    get("tasks");
-
-  if (!tasks[index])
-    return;
-
-  tasks[index].done =
-    !tasks[index].done;
-
-  set(
-    "tasks",
-    tasks
-  );
-
-  renderTasks();
-  updateStats();
-}
-
-function renderTasks() {
-
-  const tasks =
-    get("tasks");
-
-  $("taskList").innerHTML =
-    tasks.map(
-      (task,index) => `
-
-      <div
-        class="item ${
-          task.done
-            ? "done"
-            : ""
-        }"
-        onclick="toggleTask(${index})"
-      >
-
-        ⏰ ${esc(task.text)}
-
-        <span
-          style="float:right"
-        >
-          ${task.done
-            ? "✓"
-            : "○"}
-        </span>
-
-      </div>
-
-      `
-    ).join("")
-    ||
-    '<p class="small">Задач пока нет.</p>';
-}
-
-/* =========================
-   PROJECTS
-========================= */
-
-function addProject() {
-
-  const input =
-    $("projectInput");
-
-  const name =
-    input.value.trim();
-
-  if (!name)
-    return;
-
-  const projects =
-    get("projects");
-
-  projects.push({
-
-    name,
-
-    date:
-      new Date()
-        .toLocaleDateString(
-          "ru-RU"
-        )
-  });
-
-  set(
-    "projects",
-    projects
-  );
-
-  input.value = "";
-
-  renderProjects();
-  updateStats();
-}
-
-function renderProjects() {
-
-  const projects =
-    get("projects");
-
-  $("projectList").innerHTML =
-    projects.map(
-      project => `
-
-      <div class="item">
-
-        📁 <b>
-        ${esc(project.name)}
-        </b>
-
-        <div class="small">
-          Создан:
-          ${esc(project.date)}
-        </div>
-
-      </div>
-
-      `
-    ).join("")
-    ||
-    '<p class="small">Проектов пока нет.</p>';
-}
-
-/* =========================
-   LEARN
-========================= */
-
-async function learn(mode) {
-
-  const subject =
-    $("subject").value;
-
-  const topic =
-    $("topic").value.trim();
-
-  if (!topic) {
-
-    $("learnOut").textContent =
-      "Напиши тему.";
-
-    return;
-  }
-
-  let prompt = "";
-
-  if (mode === "explain") {
-
-    prompt =
-      `Объясни тему "${topic}" по предмету "${subject}" простыми словами. Добавь примеры и главное, что нужно запомнить.`;
-  }
-
-  if (mode === "test") {
-
-    prompt =
-      `Проведи тест по теме "${topic}" по предмету "${subject}". Задавай вопросы по одному.`;
-  }
-
-  if (mode === "summary") {
-
-    prompt =
-      `Сделай понятный конспект по теме "${topic}" по предмету "${subject}". Выдели определения, правила и главное.`;
-  }
-
-  $("learnOut").textContent =
-    "JARVIS готовит ответ...";
-
-  try {
-
-    const response =
-      await fetch(
-        WORKER_URL,
-        {
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
-
-          body:JSON.stringify({
-            message:prompt,
-            userName:"Создатель",
-            length:"Подробно"
-          })
-        }
-      );
-
-    const data =
-      await response.json();
-
-    if (!response.ok ||
-        data.ok === false) {
-
-      throw new Error(
-        data.error ||
-        "Ошибка"
-      );
-    }
-
-    $("learnOut").textContent =
-      data.answer;
-
-  }
-
-  catch(error) {
-
-    $("learnOut").textContent =
-      "Ошибка:\n" +
-      error.message;
-  }
-}
-
-/* =========================
-   KNOWLEDGE
-========================= */
-
-function addDocs(input) {
-
-  const docs =
-    get("docs");
-
-  for (const file of input.files) {
-
-    docs.push({
-
-      name:file.name,
-
-      size:file.size,
-
-      date:
-        new Date()
-          .toLocaleString(
-            "ru-RU"
-          )
-    });
-  }
-
-  set(
-    "docs",
-    docs
-  );
-
-  renderDocs();
-}
-
-function renderDocs() {
-
-  const docs =
-    get("docs");
-
-  $("docList").innerHTML =
-    docs.map(
-      doc => `
-
-      <div class="item">
-
-        📄 ${esc(doc.name)}
-
-        <div class="small">
-          ${Math.round(
-            doc.size / 1024
-          )} KB
-        </div>
-
-      </div>
-
-      `
-    ).join("")
-    ||
-    '<p class="small">Материалов пока нет.</p>';
-}
-
-/* =========================
-   SETTINGS
-========================= */
-
-function saveSettings() {
-
-  localStorage.setItem(
-    "userName",
-    $("userName").value
-  );
-
-  localStorage.setItem(
-    "length",
-    $("length").value
-  );
-}
-
-function loadSettings() {
-
-  const name =
-    localStorage.getItem(
-      "userName"
-    );
-
-  const length =
-    localStorage.getItem(
-      "length"
-    );
-
-  if (name)
-    $("userName").value =
-      name;
-
-  if (length)
-    $("length").value =
-      length;
-}
-
-/* =========================
-   STATUS
-========================= */
-
-async function checkWorker() {
-
-  try {
-
-    const response =
-      await fetch(
-        WORKER_URL,
-        {
-          method:"GET",
-          cache:"no-store"
-        }
-      );
-
-    if (!response.ok)
-      throw new Error();
-
-    const data =
-      await response.json();
-
-    if (data.ok) {
-
-      $("workerStatus")
-        .textContent =
-        "ONLINE";
-
-      $("aiStatus")
-        .textContent =
-        "READY";
-    }
-
-  }
-
-  catch {
-
-    $("workerStatus")
-      .textContent =
-      "OFFLINE";
-
-    $("aiStatus")
-      .textContent =
-      "OFFLINE";
-  }
-}
-
-function netStatus() {
-
-  const online =
-    navigator.onLine;
-
-  $("net").textContent =
-    online
-      ? "ONLINE"
-      : "OFFLINE";
-
-  $("net2").textContent =
-    online
-      ? "ONLINE"
-      : "OFFLINE";
-
-  $("net2").className =
-    online
-      ? "good"
-      : "";
-
-  if (!online) {
-
-    $("state").textContent =
-      "OFFLINE MODE";
-  }
-}
-
-/* =========================
-   UTILS
-========================= */
-
-function updateStats() {
-
-  const tasks =
-    get("tasks");
-
-  const projects =
-    get("projects");
-
-  $("taskStat").textContent =
-    tasks.filter(
-      x => !x.done
-    ).length +
-    " ACTIVE";
-
-  $("projectStat").textContent =
-    projects.length +
-    " ACTIVE";
-}
-
-function esc(text) {
-
-  return String(text)
-    .replace(
-      /[&<>"']/g,
-      char => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#39;"
-      }[char])
-    );
-}
-
-function toast(text) {
-  alert(text);
-}
-
-function clearAll() {
-
-  if (
-    confirm(
-      "Удалить все локальные данные JARVIS?"
-    )
-  ) {
-
-    localStorage.clear();
-
-    location.reload();
-  }
-}
-
-/* =========================
-   EVENTS
-========================= */
-
-$("q").addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key === "Enter"
-    ) {
-
-      event.preventDefault();
-
-      ask();
-    }
-  }
-);
-
-$("taskInput").addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key === "Enter"
-    ) {
-
-      event.preventDefault();
-
-      addTask();
-    }
-  }
-);
-
-$("memInput").addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key === "Enter"
-    ) {
-
-      event.preventDefault();
-
-      addMemory();
-    }
-  }
-);
-
-window.addEventListener(
-  "online",
-  netStatus
-);
-
-window.addEventListener(
-  "offline",
-  netStatus
-);
-
-/* =========================
-   START
-========================= */
-
-loadSettings();
-
-renderTasks();
-renderProjects();
-renderMemory();
-renderDocs();
-updateStats();
-netStatus();
-checkWorker();
-
-if (
-  "serviceWorker" in navigator
-) {
-
-  navigator.serviceWorker
-    .register(
-      "sw.js"
-    )
-    .catch(() => {});
-}
-
-</script>
-
-</body>
-</html>
+              "Ты — JARVIS. Проанализируй изображение
